@@ -11,35 +11,32 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { useEffect, useState } from "react";
 const FeaturedSurveySection = () => {
-  const [slidesToShow, setSlidesToShow] = useState(3); // Default value for larger screens
+  const [slidesToShow, setSlidesToShow] = useState(3);
 
+  //   Changing visible slide depending window size
   useEffect(() => {
-    // Function to handle responsive behavior
     const handleResize = () => {
-      const isSmallScreen = window.innerWidth <= 768; // You can adjust this breakpoint as needed
+      const isSmallScreen = window.innerWidth <= 768;
       setSlidesToShow(isSmallScreen ? 2 : 3);
     };
 
-    // Initial call to set slides based on initial screen size
     handleResize();
 
-    // Event listener for window resize
     window.addEventListener("resize", handleResize);
 
-    // Cleanup on component unmount
     return () => window.removeEventListener("resize", handleResize);
   }, [slidesToShow]);
 
   return (
     <section className="my-24 mx-4">
-      <div className="w-full">
+      <div className="w-full ">
         <CarouselProvider
           visibleSlides={slidesToShow}
           totalSlides={6}
           step={3}
           naturalSlideWidth={400}
-          naturalSlideHeight={500}
-          className="h-96"
+          naturalSlideHeight={300}
+          className="md:h-64 h-[350px] bg-[url(/assets/featured-survey-bg-01.png)] bg-cover "
         >
           <div className="w-full flex justify-between ">
             <div className="flex gap-2">
@@ -58,7 +55,8 @@ const FeaturedSurveySection = () => {
               </ButtonNext>
             </div>
           </div>
-          <Slider className="mt-10 w-full h-full">
+
+          <Slider className="mt-8 w-full h-full ">
             <Slide tag="a" index={0}>
               <div className=" bg-white shadow-xl   p-4 mr-4 ">
                 <h6 className="font-semibold">Questions</h6>
