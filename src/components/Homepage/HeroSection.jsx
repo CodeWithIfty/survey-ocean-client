@@ -1,7 +1,7 @@
 import { FaArrowRight } from "react-icons/fa6";
 const HeroSection = () => {
   return (
-    <section className="container mx-auto ">
+    <section>
       <div className="grid md:grid-cols-8 grid-cols-1  justify-center items-center md:gap-24 mx-5">
         <div className="lg:col-span-5 md:col-span-4 flex flex-col justify-start items-center order-2">
           <div className="">

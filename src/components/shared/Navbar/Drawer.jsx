@@ -15,12 +15,12 @@ const Drawer = ({ setDrawerOpen, drawerOpen }) => {
         aria-labelledby="drawer-navigation-label"
       >
         {/* Logo */}
-        <h5
+        <div
           id="drawer-navigation-label"
           className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
         >
-          Menu
-        </h5>
+          <img src="/assets/logo.png" alt="" className="h-12" />
+        </div>
 
         {/* Close Btn */}
         <button
