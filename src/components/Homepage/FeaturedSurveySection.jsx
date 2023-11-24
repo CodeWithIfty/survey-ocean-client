@@ -7,9 +7,9 @@ import {
   Slider,
 } from "pure-react-carousel";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
-
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { useEffect, useState } from "react";
+
 const FeaturedSurveySection = () => {
   const [slidesToShow, setSlidesToShow] = useState(3);
 
