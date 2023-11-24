@@ -6,6 +6,10 @@ const navItems = [
     link: "/",
   },
   {
+    name: "Surveys",
+    link: "/dashboard/surveys",
+  },
+  {
     name: "About Us",
     link: "/about-us",
   },

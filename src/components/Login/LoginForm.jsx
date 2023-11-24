@@ -1,0 +1,117 @@
+import toast from "react-hot-toast";
+import { AiTwotoneMail } from "react-icons/ai";
+import { MdPassword } from "react-icons/md";
+import useAuth from "../../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { FaGoogle } from "react-icons/fa";
+
+const LoginForm = ({
+  handleUserNameChange,
+  handleEmailClick,
+  handleUserNameBlur,
+  passwordShow,
+  setPasswordShow,
+  setPasswordOnFocus,
+}) => {
+  const { SignInUser, setLoading, SignInWithGoogle } = useAuth();
+  const navigate = useNavigate();
+  const [loginError, setLoginError] = useState("");
+  const location = useLocation();
+  console.log(location);
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    const toastId = toast.loading("Logging in ...");
+
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    // console.log(email, password);
+
+    SignInUser(email, password)
+      .then((res) => {
+        toast.success("Logged in", { id: toastId });
+        navigate(
+          location?.state?.previousPath ? location?.state?.previousPath : "/"
+        );
+      })
+      .catch((err) => {
+        setLoading(false);
+        toast.error("Invalid Login Details", { id: toastId });
+        setLoginError("Invalid login details!");
+      });
+  };
+
+  const handleSignInWithGoogle = () => {
+    const toastId = toast.loading("Logging in ...");
+    SignInWithGoogle()
+      .then(() => {
+        toast.success("Logged in", { id: toastId });
+        navigate(
+          location?.state?.previousPath ? location?.state?.previousPath : "/"
+        );
+      })
+      .catch((err) => console.log(err));
+  };
+  return (
+    <form onSubmit={handleLoginSubmit}>
+      <div className="login">
+        <label>
+          <AiTwotoneMail className="absolute top-[30%] left-[33px]" />
+
+          <input
+            className="username"
+            type="email"
+            name="email"
+            onChange={handleUserNameChange}
+            onFocus={handleEmailClick}
+            onBlur={handleUserNameBlur}
+            autoComplete="on"
+            placeholder="Email Address"
+            required
+          />
+        </label>
+
+        <label>
+          <MdPassword className="absolute top-[30%] left-[33px]" />
+          <input
+            className="password"
+            name="password"
+            type={`${passwordShow ? "text" : "password"}`}
+            onClick={() => setPasswordOnFocus(true)}
+            onBlur={() => setPasswordOnFocus(false)}
+            autoComplete="off"
+            placeholder="password"
+            required
+          />
+          <button
+            type="button"
+            onClick={() => {
+              setPasswordShow(!passwordShow);
+              if (passwordShow) {
+                setPasswordOnFocus(true);
+              }
+            }}
+            onBlur={() => setPasswordOnFocus(false)}
+            className="password-button"
+          >
+            {passwordShow ? "hide" : "show"}
+          </button>
+        </label>
+
+        {loginError && <p className="text-xs text-error ml-6">{loginError}</p>}
+
+        <button type="submit" className="login-button">
+          log in
+        </button>
+      </div>
+      <div className="social-buttons">
+        <div className="social" onClick={handleSignInWithGoogle}>
+          <FaGoogle />
+        </div>
+      </div>
+    </form>
+  );
+};
+
+export default LoginForm;

@@ -21,7 +21,7 @@ const HowItsWorkSection = () => {
         </p>
       </div>
       <div className=" grid md:grid-cols-8 grid-cols-1 justify-between items-center ">
-        <div className="col-span-4">
+        <div className="col-span-4 w-10/12">
           <img src="/assets/vector2.png" alt="" />
         </div>
         <div className="col-span-4 flex justify-center">
@@ -69,7 +69,7 @@ const HowItsWorkSection = () => {
             </div>
           </div>
           <div className="col-span-4 ">
-            <div className="w-10/12">
+            <div className="w-9/12">
               <img src="/assets/vector3.png" alt="" />
             </div>
           </div>

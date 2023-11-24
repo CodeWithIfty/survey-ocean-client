@@ -5,7 +5,7 @@ const HeroSection = () => {
       <div className="grid md:grid-cols-8 grid-cols-1  justify-center items-center md:gap-24 mx-5">
         <div className="lg:col-span-5 md:col-span-4 flex flex-col justify-start items-center order-2">
           <div className="">
-            <button className="bg-secondary px-3 py-2 font-semibold mb-3">
+            <button className="bg-secondary px-3 py-2 font-semibold mb-3 rounded">
               QUANTITATIVE
             </button>
             <h1 className="lg:text-6xl text-4xl font-semibold mb-4">

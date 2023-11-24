@@ -1,6 +1,7 @@
 import FeaturedSurveySection from "../components/Homepage/FeaturedSurveySection";
 import HeroSection from "../components/Homepage/HeroSection";
 import HowItsWorkSection from "../components/Homepage/HowItsWorkSection";
+import TestimonialSection from "../components/Homepage/TestimonialSection";
 
 const HomePage = () => {
   return (
@@ -8,6 +9,7 @@ const HomePage = () => {
       <HeroSection />
       <FeaturedSurveySection />
       <HowItsWorkSection />
+      <TestimonialSection />
     </main>
   );
 };
