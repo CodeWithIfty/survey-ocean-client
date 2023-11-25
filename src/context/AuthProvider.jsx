@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import PropTypes from "prop-types";
+import { removeToken } from "../api/auth";
 
 export const authContext = createContext();
 const googleProvider = new GoogleAuthProvider();
@@ -30,9 +31,9 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const SignOutUser = () => {
-    setLoading(true);
-    return signOut(auth);
+  const SignOutUser = async () => {
+    await removeToken(user);
+    await signOut(auth);
   };
   const SignInWithGoogle = () => {
     return signInWithPopup(auth, googleProvider);
@@ -54,7 +55,6 @@ const AuthProvider = ({ children }) => {
       unSubscribe();
     };
   }, []);
-
 
   const authInfo = {
     user,

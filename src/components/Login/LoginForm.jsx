@@ -19,7 +19,7 @@ const LoginForm = ({
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState("");
   const location = useLocation();
-  console.log(location);
+
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const toastId = toast.loading("Logging in ...");
@@ -31,7 +31,6 @@ const LoginForm = ({
     try {
       // SignIn User
       const result = await SignInUser(email, password);
-      console.log(result);
 
       // get token
       await createToken(result?.user);
@@ -42,7 +41,7 @@ const LoginForm = ({
       );
     } catch (err) {
       setLoginError("Invalid login details!");
-      toast.error("Invalid Login Details", { id: toastId });
+      toast.error("Invalid login details!", { id: toastId });
       setLoading(false);
     }
   };
@@ -59,7 +58,7 @@ const LoginForm = ({
       await saveUser(result?.user);
 
       // Get token
-      const data = createToken(result?.user);
+      await createToken(result?.user);
       // console.log(data);
 
       toast.success("Successfully Registered !", { id: toastId });
@@ -70,6 +69,7 @@ const LoginForm = ({
       console.log("error from register ----->", err);
     }
   };
+
   return (
     <form onSubmit={handleLoginSubmit}>
       <div className="login">

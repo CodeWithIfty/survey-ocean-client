@@ -1,10 +1,10 @@
 import { FaSearch } from "react-icons/fa";
 
-const Heading = () => {
+const Heading = ({ title }) => {
   return (
     <div className="px-5 border-b   py-5 flex items-center justify-between">
       <div className="">
-        <h1 className="font-bold">All Surveys</h1>
+        <h1 className="font-bold">{title}</h1>
       </div>
 
       <div className="flex items-center px-3 py-2 bg-white border shadow rounded">

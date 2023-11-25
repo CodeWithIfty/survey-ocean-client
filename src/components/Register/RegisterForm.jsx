@@ -22,7 +22,7 @@ const RegisterForm = ({
   const [photo, setPhoto] = useState();
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
-  const { createUser, updateUserProfile, SignInWithGoogle, user } = useAuth();
+  const { createUser, updateUserProfile, SignInWithGoogle } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -61,8 +61,7 @@ const RegisterForm = ({
       await saveUser(result?.user);
 
       // Get token
-      const data = createToken(result?.user);
-      console.log(data);
+      await createToken(result?.user);
 
       toast.success("Successfully Registered !", { id: toastId });
       navigate(
@@ -89,7 +88,7 @@ const RegisterForm = ({
       await saveUser(result?.user);
 
       // Get token
-      const data = createToken(result?.user);
+      await createToken(result?.user);
       // console.log(data);
 
       toast.success("Successfully Registered !", { id: toastId });

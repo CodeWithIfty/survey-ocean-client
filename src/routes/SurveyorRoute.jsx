@@ -1,26 +1,27 @@
-import { useContext } from "react";
-
 import { useLocation, useNavigate } from "react-router-dom";
-import { authContext } from "../context/AuthProvider";
+import useRole from "../hooks/useRole";
+import useAuth from "../hooks/useAuth";
 
-const PrivateRoute = ({ children }) => {
-  const { user, loading } = useContext(authContext);
+const SurveyorRoute = ({ children }) => {
+  const { loading } = useAuth();
+  const role = useRole();
+
   const location = useLocation();
   const navigate = useNavigate();
   if (loading) {
     return (
-      <div className="h-[50vh] flex justify-center items-center">
+      <div className="h-[100vh] flex justify-center items-center">
         <span className="loading loading-ring loading-md scale-150"></span>
       </div>
     );
   }
-  if (user) {
+  if (role === "surveyor") {
     return children;
-  } 
+  }
 
   return navigate("/register", {
     state: { previousPath: location.pathname },
   });
 };
 
-export default PrivateRoute;
+export default SurveyorRoute;

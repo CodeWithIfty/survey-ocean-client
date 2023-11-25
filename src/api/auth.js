@@ -1,7 +1,6 @@
 import axiosSecure from ".";
 
 export const saveUser = async (user) => {
-  console.log("from auth", user);
   const currentUser = {
     user_email: user?.email,
     user_name: user?.displayName,
@@ -20,7 +19,20 @@ export const createToken = async (user) => {
   return data;
 };
 export const removeToken = async (user) => {
-  const currentUser = { email: user?.email };
-  const { data } = await axiosSecure.post(`/logout`, currentUser);
-  return data;
+  try {
+    const currentUser = { email: user?.email };
+    const { data } = await axiosSecure.post(`/logout`, currentUser);
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getRole = async (email) => {
+  const { data } = await axiosSecure(`/user/${email}`);
+  return data.user_role;
+};
+export const getUser = async (email) => {
+  const { data } = await axiosSecure(`/user/${email}`);
+  return data._id;
 };

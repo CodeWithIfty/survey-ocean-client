@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 import LoginForm from "../components/Login/LoginForm";
