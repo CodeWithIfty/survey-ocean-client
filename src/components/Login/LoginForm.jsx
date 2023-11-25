@@ -5,6 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
+import { createToken, saveUser } from "../../api/auth";
 
 const LoginForm = ({
   handleUserNameChange,
@@ -19,7 +20,7 @@ const LoginForm = ({
   const [loginError, setLoginError] = useState("");
   const location = useLocation();
   console.log(location);
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     const toastId = toast.loading("Logging in ...");
 
@@ -27,31 +28,47 @@ const LoginForm = ({
     const email = form.get("email");
     const password = form.get("password");
     // console.log(email, password);
+    try {
+      // SignIn User
+      const result = await SignInUser(email, password);
+      console.log(result);
 
-    SignInUser(email, password)
-      .then((res) => {
-        toast.success("Logged in", { id: toastId });
-        navigate(
-          location?.state?.previousPath ? location?.state?.previousPath : "/"
-        );
-      })
-      .catch((err) => {
-        setLoading(false);
-        toast.error("Invalid Login Details", { id: toastId });
-        setLoginError("Invalid login details!");
-      });
+      // get token
+      await createToken(result?.user);
+
+      toast.success("Logged in", { id: toastId });
+      navigate(
+        location?.state?.previousPath ? location?.state?.previousPath : "/"
+      );
+    } catch (err) {
+      setLoginError("Invalid login details!");
+      toast.error("Invalid Login Details", { id: toastId });
+      setLoading(false);
+    }
   };
 
-  const handleSignInWithGoogle = () => {
+  const handleSignInWithGoogle = async () => {
     const toastId = toast.loading("Logging in ...");
-    SignInWithGoogle()
-      .then(() => {
-        toast.success("Logged in", { id: toastId });
-        navigate(
-          location?.state?.previousPath ? location?.state?.previousPath : "/"
-        );
-      })
-      .catch((err) => console.log(err));
+
+    try {
+      // Creating User
+      const result = await SignInWithGoogle();
+      console.log(result);
+
+      // save user to db
+      await saveUser(result?.user);
+
+      // Get token
+      const data = createToken(result?.user);
+      // console.log(data);
+
+      toast.success("Successfully Registered !", { id: toastId });
+      navigate(
+        location?.state?.previousPath ? location?.state?.previousPath : "/"
+      );
+    } catch (err) {
+      console.log("error from register ----->", err);
+    }
   };
   return (
     <form onSubmit={handleLoginSubmit}>

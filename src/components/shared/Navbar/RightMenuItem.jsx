@@ -1,7 +1,7 @@
-import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
+import { removeToken } from "../../../api/auth";
 
 const RightMenuItem = () => {
   const { user, SignOutUser } = useAuth();
@@ -9,6 +9,7 @@ const RightMenuItem = () => {
 
   const handleLogOut = async () => {
     await SignOutUser();
+    await removeToken(user);
   };
   return (
     <>

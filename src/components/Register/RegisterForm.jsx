@@ -1,17 +1,12 @@
 import { useState } from "react";
 import { AiTwotoneMail } from "react-icons/ai";
-import {
-  FaCamera,
-  FaFacebook,
-  FaGithub,
-  FaGoogle,
-  FaRegUser,
-} from "react-icons/fa";
+import { FaCamera, FaGoogle, FaRegUser } from "react-icons/fa";
 import { MdPassword } from "react-icons/md";
 import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import { uploadImage } from "../../utils";
 import toast from "react-hot-toast";
+import { createToken, saveUser } from "../../api/auth";
 
 const RegisterForm = ({
   handleUserNameChange,
@@ -58,9 +53,16 @@ const RegisterForm = ({
       // Creating User
       const result = await createUser(email, password);
       console.log(result);
-      // Updating user Display name and photoURL
 
+      // Updating user Display name and photoURL
       await updateUserProfile(name, display_url);
+
+      // save user to db
+      await saveUser(result?.user);
+
+      // Get token
+      const data = createToken(result?.user);
+      console.log(data);
 
       toast.success("Successfully Registered !", { id: toastId });
       navigate(
@@ -75,16 +77,28 @@ const RegisterForm = ({
     }
   };
 
-  const handleSignInWithGoogle = () => {
+  const handleSignInWithGoogle = async () => {
     const toastId = toast.loading("Logging in ...");
-    SignInWithGoogle()
-      .then(() => {
-        toast.success("Logged in", { id: toastId });
-        navigate(
-          location?.state?.previousPath ? location?.state?.previousPath : "/"
-        );
-      })
-      .catch((err) => console.log(err));
+
+    try {
+      // Creating User
+      const result = await SignInWithGoogle();
+      console.log(result);
+
+      // save user to db
+      await saveUser(result?.user);
+
+      // Get token
+      const data = createToken(result?.user);
+      // console.log(data);
+
+      toast.success("Successfully Registered !", { id: toastId });
+      navigate(
+        location?.state?.previousPath ? location?.state?.previousPath : "/"
+      );
+    } catch (err) {
+      console.log("error from register ----->", err);
+    }
   };
   return (
     <form onSubmit={handleFormSubmit}>
