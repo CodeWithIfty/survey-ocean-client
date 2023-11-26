@@ -9,16 +9,11 @@ import UserMenu from "./UserMenu";
 const Sidebar = () => {
   const { user, loading } = useAuth();
 
-
   const role = useRole();
   return (
     <>
       {/* drawer component */}
-      {loading && (
-        <div className="h-full flex justify-center ">
-          <span className="loading loading-ring loading-md scale-150"></span>
-        </div>
-      )}
+
       <div
         id="drawer-navigation"
         className="top-0 left-0 z-40 h-full p-4 overflow-y-auto transition-transform  bg-white w-64 dark:bg-gray-800 border-r" //-translate-x-full
@@ -57,12 +52,17 @@ const Sidebar = () => {
           <span className="sr-only">Close menu</span>
         </button> */}
 
-        <div className="py-4 overflow-y-auto">
-          {!user && <DefaultMenu />} {role === "user" && <UserMenu />}
-          {role === "admin" && <AdminMenu />}
-          {role === "pro-user" && <ProUserMenu />}
-          {role === "surveyor" && <SurveyorMenu />}
-        </div>
+        {loading ? (
+          <></>
+        ) : (
+          <div className="py-4 overflow-y-auto">
+            {!user && <DefaultMenu />}
+            {role === "user" && <UserMenu />}
+            {role === "admin" && <AdminMenu />}
+            {role === "pro-user" && <ProUserMenu />}
+            {role === "surveyor" && <SurveyorMenu />}
+          </div>
+        )}
       </div>
     </>
   );

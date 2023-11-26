@@ -6,27 +6,34 @@ import { getSurveyDetails } from "../../../api/survey";
 import PollForm from "./PollForm";
 import SurveyDetailsSection from "./SurveyDetailsSection";
 import CommentSection from "./CommentSection";
-import { useEffect } from "react";
+import Loader from "../../../components/shared/Loader";
 
 const SurveyDetails = () => {
   const { id } = useParams();
-  const { data: survey, refetch } = useQuery({
+  const {
+    data: survey,
+    refetch,
+    isLoading,
+  } = useQuery({
     queryKey: ["surveys"],
     queryFn: () => getSurveyDetails(id),
   });
-
 
   return (
     <div>
       <Heading title={`Details | ${survey?.title}`} />
 
-      <div className="p-5">
-        <SurveyDetailsSection survey={survey} refetch={refetch} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="p-5">
+          <SurveyDetailsSection survey={survey} refetch={refetch} />
 
-        <PollForm survey={survey} />
+          <PollForm survey={survey} refetch={refetch} />
 
-        <CommentSection survey={survey} />
-      </div>
+          <CommentSection survey={survey} />
+        </div>
+      )}
     </div>
   );
 };

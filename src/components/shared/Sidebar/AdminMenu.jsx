@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { FaChartPie, FaUserTie, FaUsers } from "react-icons/fa";
 import { IoSettingsOutline } from "react-icons/io5";
+import { CiDollar } from "react-icons/ci";
 
 const AdminMenu = () => {
   const { SignOutUser } = useAuth();
@@ -21,6 +22,16 @@ const AdminMenu = () => {
           <FaUsers className="text-xl" />
           <span className="ms-3">Manage User</span>
         </button>
+      </li>
+
+      <li>
+        <Link
+          to={"/dashboard/surveys"}
+          className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+        >
+          <CiDollar className="text-2xl" />
+          <span className="ms-3">All Surveys</span>
+        </Link>
       </li>
 
       <li>

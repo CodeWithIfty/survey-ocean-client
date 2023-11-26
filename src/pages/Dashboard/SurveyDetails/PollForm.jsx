@@ -1,23 +1,42 @@
 import { useEffect, useState } from "react";
 import useUserId from "../../../hooks/useUserId";
 import { postPoll } from "../../../api/survey";
+import useAuth from "../../../hooks/useAuth";
+import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import useRole from "../../../hooks/useRole";
 
-const PollForm = ({ survey }) => {
+const PollForm = ({ survey, refetch }) => {
+  const { user } = useAuth();
   const [selectedOption, setSelectedOption] = useState(null);
   const [isPolled, setIsPolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
   };
 
   const userId = useUserId();
+  const role = useRole();
 
   const handlePollSubmit = async (e) => {
     e.preventDefault();
+    console.log("object");
+    const toastId = toast.loading("Loading...");
+    if (role != "admin" && role != "surveyor") {
+      try {
+        const poll = { userId, surveyId: survey?._id, selectedOption };
 
-    const poll = { userId, surveyId: survey?._id, selectedOption };
-
-    const { data } = await postPoll(poll);
-    console.log(data);
+        const { data } = await postPoll(poll);
+        toast.success("Successfully Polled!", { id: toastId });
+        refetch();
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      toast.error("You can't able to vote!", { id: toastId });
+    }
   };
 
   useEffect(() => {
@@ -31,7 +50,6 @@ const PollForm = ({ survey }) => {
       setIsPolled(false);
     }
   }, [userId, survey]);
-  console.log(isPolled);
 
   return (
     <div className={`${isPolled ? "bg-gray" : ""} border p-5 my-3 `}>
@@ -58,13 +76,28 @@ const PollForm = ({ survey }) => {
                   </label>
                 </div>
               ))}
-              <input
-                type="submit"
-                name=""
-                id=" "
-                value={"Vote"}
-                className="px-4 py-2 bg-primary rounded-lg text-white font-semibold mt-4 cursor-pointer"
-              />
+
+              {!user ? (
+                <button
+                  type="button"
+                  onClick={() =>
+                    navigate("/login", {
+                      state: { previousPath: location.pathname },
+                    })
+                  }
+                  className="px-4 py-2  bg-primary rounded-lg text-white font-semibold cursor-pointer"
+                >
+                  Login to vote
+                </button>
+              ) : (
+                <input
+                  type="submit"
+                  name=""
+                  id=" "
+                  value={"Vote"}
+                  className="px-4 py-2 bg-primary rounded-lg text-white font-semibold mt-4 cursor-pointer"
+                />
+              )}
             </form>
           )}
         </div>

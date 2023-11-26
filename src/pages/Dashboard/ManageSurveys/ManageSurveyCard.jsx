@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
-import useSurveys from "../../hooks/useSurveys";
-import LikeDisLike from "../shared/Sidebar/LikeDisLike";
+import LikeDisLike from "../../../components/shared/Sidebar/LikeDisLike";
 
-const SurveyCard = ({ survey }) => {
-  const { refetch } = useSurveys();
-
+const ManageSurveyCard = ({ survey }) => {
   const durationInSeconds = parseInt(survey?.duration);
   const durationInMinutes = !isNaN(durationInSeconds)
     ? durationInSeconds / 1000
@@ -20,21 +17,28 @@ const SurveyCard = ({ survey }) => {
         <span className="text-xs">
           Duration: {durationInMinutes.toFixed(2)} minutes
         </span>
-        <LikeDisLike survey={survey} refetch={refetch} />
+        <LikeDisLike survey={survey} />
       </div>
+
       <div className="flex flex-col space-y-2">
+        <Link
+          to={`/dashboard/survey-details/${survey?._id}`}
+          className="bg-secondary px-2 py-1 font-semibold text-gray-600 rounded-md"
+        >
+          View Details
+        </Link>
         <Link
           to={`/dashboard/survey-details/${survey?._id}`}
           className="bg-primary px-2 py-1 font-semibold text-white rounded-md"
         >
-          View Survey
+          Edit Survey
         </Link>
-        <Link className="bg-secondary px-2 py-1 text-center font-semibold text-gray-700 rounded-md">
-          Report
+        <Link className="bg-red-500 px-2 py-1 text-center font-semibold text-white rounded-md">
+          Delete
         </Link>
       </div>
     </div>
   );
 };
 
-export default SurveyCard;
+export default ManageSurveyCard;

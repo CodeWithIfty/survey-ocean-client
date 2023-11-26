@@ -5,6 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { doLike } from "../../../api/survey";
 import toast from "react-hot-toast";
+import useRole from "../../../hooks/useRole";
 
 const LikeDisLike = ({ survey, refetch }) => {
   const { user } = useAuth();
@@ -13,45 +14,55 @@ const LikeDisLike = ({ survey, refetch }) => {
   const navigate = useNavigate();
 
   const userId = useUserId();
+  const role = useRole();
   const handleLike = async (surveyId) => {
-    if (user) {
-      const toastId = toast.loading("Like...");
+    const toastId = toast.loading("Loading...");
+    if (role != "admin" && role != "surveyor") {
+      if (user) {
+        try {
+          const action = "like";
+          const data = { userId, surveyId, action };
+
+          const result = await doLike(data);
+          refetch();
+          toast.success("Liked", { id: toastId });
+          console.log(result);
+        } catch (error) {
+          if (error.message === "Request failed with status code 400") {
+            toast.error("Already Performed!", { id: toastId });
+          }
+
+          console.log(error);
+        }
+      } else {
+        navigate("/login", {
+          state: { previousPath: location.pathname },
+        });
+      }
+    } else {
+      toast.error("You can't able to like or dislike!", { id: toastId });
+    }
+  };
+
+  const handleDisLike = async (surveyId) => {
+    const toastId = toast.loading("Loading...");
+    if (role != "admin" && role != "surveyor") {
       try {
-        const action = "like";
+        const action = "dislike";
         const data = { userId, surveyId, action };
 
         const result = await doLike(data);
         refetch();
-        toast.success("Liked", { id: toastId });
+        toast.success("Disliked", { id: toastId });
         console.log(result);
       } catch (error) {
         if (error.message === "Request failed with status code 400") {
           toast.error("Already Performed!", { id: toastId });
         }
-
         console.log(error);
       }
     } else {
-      navigate("/login", {
-        state: { previousPath: location.pathname },
-      });
-    }
-  };
-  const handleDisLike = async (surveyId) => {
-    const toastId = toast.loading("Loading...");
-    try {
-      const action = "dislike";
-      const data = { userId, surveyId, action };
-
-      const result = await doLike(data);
-      refetch();
-      toast.success("Disliked", { id: toastId });
-      console.log(result);
-    } catch (error) {
-      if (error.message === "Request failed with status code 400") {
-        toast.error("Already Performed!", { id: toastId });
-      }
-      console.log(error);
+      toast.error("You can't able to like or dislike!", { id: toastId });
     }
   };
 
@@ -102,7 +113,7 @@ const LikeDisLike = ({ survey, refetch }) => {
 
       <div className="flex flex-col items-center justify-center border-l-2 pl-4">
         <span className="text-sm">voted </span>
-        <span className="text-sm">{survey?.dislikes}</span>
+        <span className="text-sm">{survey?.polledBy?.length}</span>
       </div>
     </div>
   );

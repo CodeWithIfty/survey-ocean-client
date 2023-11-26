@@ -1,13 +1,12 @@
-import { getRole } from "../../../api/auth";
 import { postComment } from "../../../api/survey";
 import useAuth from "../../../hooks/useAuth";
+import useRole from "../../../hooks/useRole";
 import useUserId from "../../../hooks/useUserId";
 
 const CommentSection = ({ survey }) => {
   const userId = useUserId();
   const { user } = useAuth();
-  const role = getRole();
-
+  const role = useRole();
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
 

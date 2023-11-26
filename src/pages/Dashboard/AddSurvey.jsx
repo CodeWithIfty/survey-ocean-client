@@ -2,14 +2,16 @@ import { useState } from "react";
 import Heading from "../../components/Surveys/Heading";
 import axiosSecure from "../../api";
 import useUserId from "../../hooks/useUserId";
+import toast from "react-hot-toast";
 
 const AddSurvey = () => {
   const userId = useUserId();
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    author: userId,
-    category: "Technology",
+    author: "",
+    category: "",
     duration: "",
     questions: [{ text: "", options: [] }],
     pollQuestion: "",
@@ -18,6 +20,10 @@ const AddSurvey = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      author: userId,
+    }));
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
@@ -68,10 +74,24 @@ const AddSurvey = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const toastId = toast.loading("Posting...");
+    console.log(formData);
     try {
-      const { data } = await axiosSecure.post("/survey", formData);
-      console.log(data);
+      await axiosSecure.post("/survey", formData);
+      toast.success("Successfully Published!", { id: toastId });
+
+      setFormData({
+        title: "",
+        description: "",
+        author: userId,
+        category: "",
+        duration: "",
+        questions: [{ text: "", options: [""] }],
+        pollQuestion: "",
+        pollOptions: [""],
+      });
     } catch (error) {
+      toast.error("Something is wrong!", { id: toastId });
       console.error("Error posting data:", error);
     }
   };
@@ -101,6 +121,7 @@ const AddSurvey = () => {
                 type="text"
                 value={formData.title}
                 onChange={handleInputChange}
+                required
               />
             </label>
 
@@ -116,6 +137,7 @@ const AddSurvey = () => {
                 className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
                 value={formData.description}
                 onChange={handleInputChange}
+                required
               />
             </label>
 
@@ -131,8 +153,26 @@ const AddSurvey = () => {
                 className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
                 value={formData.category}
                 onChange={handleInputChange}
+                required
               >
                 <option value="Technology">Technology</option>
+                <option value="Travel and Tourism">Travel and Tourism</option>
+                <option value="Entertainment Choices">
+                  Entertainment Choices
+                </option>
+                <option value="Financial Management">
+                  Financial Management
+                </option>
+                <option value="Education and Learning">
+                  Education and Learning
+                </option>
+                <option value="Workplace Satisfaction">
+                  Workplace Satisfaction
+                </option>
+                <option value="Environmental Awareness">
+                  Environmental Awareness
+                </option>
+                <option value="Health and Wellness">Health and Wellness</option>
               </select>
             </label>
 
@@ -149,6 +189,7 @@ const AddSurvey = () => {
                 type="number"
                 value={formData.duration}
                 onChange={handleInputChange}
+                required
               />
             </label>
 

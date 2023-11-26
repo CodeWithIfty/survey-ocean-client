@@ -8,9 +8,10 @@ import Register from "../pages/Register";
 import Surveys from "../pages/Dashboard/Surveys";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import AddSurvey from "../pages/Dashboard/AddSurvey";
-import ManageSurveys from "../pages/Dashboard/ManageSurveys";
 import PrivateRoute from "./PrivateRoute";
 import SurveyDetails from "../pages/Dashboard/SurveyDetails/SurveyDetails";
+import ManageSurveys from "../pages/Dashboard/ManageSurveys/ManageSurveys";
+import StartSurvey from "../pages/Dashboard/StartSurvey";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
       {
         path: "survey-details/:id",
         element: <SurveyDetails />,
+      },
+      {
+        path: "survey/:id",
+        element: <StartSurvey />,
       },
     ],
   },
