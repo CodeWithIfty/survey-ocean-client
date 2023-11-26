@@ -5,6 +5,7 @@ import { deleteUser, updateUserRole } from "../../../api/Users";
 import toast from "react-hot-toast";
 
 const ManageUsers = () => {
+  const [filteredRole, setFilteredRole] = useState("");
   const { users, refetch } = useAllUsers();
   const [selectedRole, setSelectedRole] = useState("");
 
@@ -38,6 +39,15 @@ const ManageUsers = () => {
       console.log(err);
     }
   };
+
+  const filteredUsers = users?.filter((user) => {
+    if (filteredRole === "") {
+      return true;
+    } else {
+      return user?.user_role === filteredRole;
+    }
+  });
+
   return (
     <div className="p-5">
       <Heading title={"Manage Users"} />
@@ -54,7 +64,18 @@ const ManageUsers = () => {
                 Name
               </th>
               <th scope="col" className="px-6 py-3">
-                Position
+                <select
+                  name=""
+                  id=""
+                  value={filteredRole} // Control the value by the state
+                  onChange={(e) => setFilteredRole(e.target.value)}
+                >
+                  <option value="">Sort by role</option>
+                  <option value="surveyor">surveyor</option>
+                  <option value="admin">admin</option>
+                  <option value="user">user</option>
+                  <option value="pro-user">pro-user</option>
+                </select>
               </th>
               <th scope="col" className="px-6 py-3">
                 Status
@@ -65,7 +86,7 @@ const ManageUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users?.map((user, index) => (
+            {filteredUsers?.map((user, index) => (
               <tr
                 key={index}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"

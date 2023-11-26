@@ -14,6 +14,7 @@ import ManageSurveys from "../pages/Dashboard/ManageSurveys/ManageSurveys";
 import StartSurvey from "../pages/Dashboard/StartSurvey";
 import Profile from "../pages/Profile";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import AdminSurveyManage from "../pages/Dashboard/AdminSurveyManage/AdminSurveyManage";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ManageUsers />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "admin-manage-surveys",
+        element: (
+          <PrivateRoute>
+            <AdminSurveyManage />
           </PrivateRoute>
         ),
       },

@@ -23,6 +23,10 @@ export const postReport = async (report) => {
   const data = await axiosSecure.post(`/report`, report);
   return data;
 };
+export const postAdminReport = async (report) => {
+  const data = await axiosSecure.post(`/admin-report`, report);
+  return data;
+};
 
 export const postPoll = async (poll) => {
   const data = await axiosSecure.post(`/post-poll`, poll);
@@ -54,4 +58,9 @@ export const getFilteredSurveys = async (
   } catch (err) {
     console.log(err);
   }
+};
+
+export const publishUnPublish = async (action) => {
+  const data = await axiosSecure.put(`/survey/publish`, action);
+  return data;
 };
