@@ -16,9 +16,9 @@ const LikeDisLike = ({ survey, refetch }) => {
   const userId = useUserId();
   const role = useRole();
   const handleLike = async (surveyId) => {
-    const toastId = toast.loading("Loading...");
     if (role != "admin" && role != "surveyor") {
       if (user) {
+        const toastId = toast.loading("Loading...");
         try {
           const action = "like";
           const data = { userId, surveyId, action };
@@ -45,24 +45,26 @@ const LikeDisLike = ({ survey, refetch }) => {
   };
 
   const handleDisLike = async (surveyId) => {
-    const toastId = toast.loading("Loading...");
     if (role != "admin" && role != "surveyor") {
-      try {
-        const action = "dislike";
-        const data = { userId, surveyId, action };
+      if (user) {
+        const toastId = toast.loading("Loading...");
+        try {
+          const action = "dislike";
+          const data = { userId, surveyId, action };
 
-        const result = await doLike(data);
-        refetch();
-        toast.success("Disliked", { id: toastId });
-        console.log(result);
-      } catch (error) {
-        if (error.message === "Request failed with status code 400") {
-          toast.error("Already Performed!", { id: toastId });
+          const result = await doLike(data);
+          refetch();
+          toast.success("Disliked", { id: toastId });
+          console.log(result);
+        } catch (error) {
+          if (error.message === "Request failed with status code 400") {
+            toast.error("Already Performed!", { id: toastId });
+          }
+          console.log(error);
         }
-        console.log(error);
       }
     } else {
-      toast.error("You can't able to like or dislike!", { id: toastId });
+      toast.error("You can't able to like or dislike!");
     }
   };
 
@@ -113,7 +115,7 @@ const LikeDisLike = ({ survey, refetch }) => {
 
       <div className="flex flex-col items-center justify-center border-l-2 pl-4">
         <span className="text-sm">voted </span>
-        <span className="text-sm">{survey?.polledBy?.length}</span>
+        <span className="text-sm">{survey?.vote}</span>
       </div>
     </div>
   );

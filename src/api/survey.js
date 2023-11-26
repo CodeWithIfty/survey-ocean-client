@@ -33,3 +33,19 @@ export const getUsersSurvey = async (userId) => {
   const { data } = await axiosSecure(`/user-surveys/${userId}`);
   return data;
 };
+export const getFilteredSurveys = async (
+  category,
+  sortLike,
+  sortByVote,
+  searchText
+) => {
+  console.log(sortByVote);
+  try {
+    const { data } = await axiosSecure(
+      `/get-filtered-survey?category=${category}&sortByLikeDislike=${sortLike}&sortByVote=${sortByVote}&searchTerm=${searchText}`
+    );
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};

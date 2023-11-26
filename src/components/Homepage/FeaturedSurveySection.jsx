@@ -10,11 +10,11 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { useEffect, useState } from "react";
 import useSurveys from "../../hooks/useSurveys";
+import { Link } from "react-router-dom";
 
 const FeaturedSurveySection = () => {
   const [slidesToShow, setSlidesToShow] = useState(3);
   const { surveys } = useSurveys();
-  console.log(surveys);
   //   Changing visible slide depending window size
   useEffect(() => {
     const handleResize = () => {
@@ -63,14 +63,16 @@ const FeaturedSurveySection = () => {
               surveys.length > 0 &&
               surveys?.map((survey, index) => (
                 <Slide tag="a" index={index} key={index}>
-                  <div className=" bg-white shadow-xl   p-4 mr-4 ">
-                    <h6 className="font-semibold">Latest Survey</h6>
-                    <h1 className="text-xl font-bold">{survey?.title}</h1>
-                    <p className="text-sm text-gray-400 mt-3">
-                      {survey?.description}
-                    </p>
-                    <span className="text-xs ">learn more...</span>
-                  </div>
+                  <Link to={`/dashboard/survey-details/${survey?._id}`}>
+                    <div className=" bg-white shadow-xl   p-4 mr-4 ">
+                      <h6 className="font-semibold">Latest Survey</h6>
+                      <h1 className="text-xl font-bold">{survey?.title}</h1>
+                      <p className="text-sm text-gray-400 mt-3">
+                        {survey?.description}
+                      </p>
+                      <span className="text-xs ">learn more...</span>
+                    </div>
+                  </Link>
                 </Slide>
               ))}
           </Slider>
