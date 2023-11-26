@@ -65,7 +65,7 @@ const FeaturedSurveySection = () => {
                 <Slide tag="a" index={index} key={index}>
                   <Link to={`/dashboard/survey-details/${survey?._id}`}>
                     <div className=" bg-white shadow-xl   p-4 mr-4 ">
-                      <h6 className="font-semibold">Latest Survey</h6>
+                      <h6 className="font-semibold">{survey?.category}</h6>
                       <h1 className="text-xl font-bold">{survey?.title}</h1>
                       <p className="text-sm text-gray-400 mt-3">
                         {survey?.description}

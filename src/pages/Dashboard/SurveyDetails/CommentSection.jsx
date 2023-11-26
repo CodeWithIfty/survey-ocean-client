@@ -1,17 +1,19 @@
+import toast from "react-hot-toast";
 import { postComment } from "../../../api/survey";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
 import useUserId from "../../../hooks/useUserId";
 
-const CommentSection = ({ survey }) => {
+const CommentSection = ({ survey, refetch }) => {
   const userId = useUserId();
   const { user } = useAuth();
   const role = useRole();
+
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const commentText = e.target.comment.value;
+      let commentText = e.target.comment.value;
       const commentData = {
         userId,
         surveyId: survey?._id,
@@ -20,6 +22,8 @@ const CommentSection = ({ survey }) => {
       };
 
       await postComment(commentData);
+      toast.success("Comment added...");
+      refetch();
     } catch (err) {
       console.log(err);
     }

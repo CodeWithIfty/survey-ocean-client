@@ -17,11 +17,15 @@ const AdminMenu = () => {
           <span className="ms-3">Dashboard</span>
         </Link>
       </li>
+
       <li>
-        <button className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+        <Link
+          to={"/dashboard/manage-users"}
+          className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+        >
           <FaUsers className="text-xl" />
           <span className="ms-3">Manage User</span>
-        </button>
+        </Link>
       </li>
 
       <li>

@@ -60,6 +60,7 @@ const StartSurvey = () => {
     try {
       await postSurveyResponse(payload);
       toast.success("Successfully Submitted!", { id: toastId });
+      navigate("/dashboard/surveys");
     } catch (error) {
       if (error.message === "Request failed with status code 400") {
         toast.error("Already Submitted!", { id: toastId });
@@ -107,7 +108,7 @@ const StartSurvey = () => {
           </button>
         </form>
         <Timer
-          durationInSeconds={5}
+          durationInSeconds={parseInt(survey?.duration)}
           onTimerExpired={() => setIsExpired(true)}
         />
       </div>

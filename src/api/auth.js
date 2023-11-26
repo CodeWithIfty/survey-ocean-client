@@ -32,7 +32,12 @@ export const getRole = async (email) => {
   const { data } = await axiosSecure(`/user/${email}`);
   return data.user_role;
 };
+export const getUserInfo = async (email) => {
+  const { data } = await axiosSecure(`/user/${email}`);
+  return data;
+};
 export const getUser = async (email) => {
   const { data } = await axiosSecure(`/user/${email}`);
   return data._id;
 };
+

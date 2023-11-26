@@ -19,11 +19,16 @@ export const postComment = async (comment) => {
   const data = await axiosSecure.post(`/comment`, comment);
   return data;
 };
+export const postReport = async (report) => {
+  const data = await axiosSecure.post(`/report`, report);
+  return data;
+};
 
 export const postPoll = async (poll) => {
   const data = await axiosSecure.post(`/post-poll`, poll);
   return data;
 };
+
 export const postSurveyResponse = async (response) => {
   const data = await axiosSecure.post(`/survey/response`, response);
   return data;
@@ -33,6 +38,7 @@ export const getUsersSurvey = async (userId) => {
   const { data } = await axiosSecure(`/user-surveys/${userId}`);
   return data;
 };
+
 export const getFilteredSurveys = async (
   category,
   sortLike,

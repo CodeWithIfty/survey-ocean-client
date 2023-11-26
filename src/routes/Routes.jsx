@@ -12,6 +12,9 @@ import PrivateRoute from "./PrivateRoute";
 import SurveyDetails from "../pages/Dashboard/SurveyDetails/SurveyDetails";
 import ManageSurveys from "../pages/Dashboard/ManageSurveys/ManageSurveys";
 import StartSurvey from "../pages/Dashboard/StartSurvey";
+import Profile from "../pages/Profile";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -70,6 +73,22 @@ export const router = createBrowserRouter([
       {
         path: "survey/:id",
         element: <StartSurvey />,
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <PrivateRoute>
+            <ManageUsers />
+          </PrivateRoute>
+        ),
       },
     ],
   },

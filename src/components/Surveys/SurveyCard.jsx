@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import useSurveys from "../../hooks/useSurveys";
 import LikeDisLike from "../shared/Sidebar/LikeDisLike";
+import ReportForm from "./ReportForm";
 
 const SurveyCard = ({ survey }) => {
   const { refetch } = useSurveys();
@@ -22,16 +23,16 @@ const SurveyCard = ({ survey }) => {
         </span>
         <LikeDisLike survey={survey} refetch={refetch} />
       </div>
-      <div className="flex flex-col space-y-2">
+      <div className="flex flex-col space-y-2  items-center">
         <Link
           to={`/dashboard/survey-details/${survey?._id}`}
           className="bg-primary px-2 py-1 font-semibold text-white rounded-md"
         >
           View Survey
         </Link>
-        <Link className="bg-secondary px-2 py-1 text-center font-semibold text-gray-700 rounded-md">
-          Report
-        </Link>
+        <div className="">
+          <ReportForm survey={survey} />
+        </div>
       </div>
     </div>
   );

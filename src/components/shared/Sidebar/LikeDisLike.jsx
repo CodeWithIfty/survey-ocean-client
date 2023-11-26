@@ -40,7 +40,7 @@ const LikeDisLike = ({ survey, refetch }) => {
         });
       }
     } else {
-      toast.error("You can't able to like or dislike!", { id: toastId });
+      toast.error("You can't able to like or dislike!");
     }
   };
 

@@ -31,7 +31,7 @@ const SurveyDetails = () => {
 
           <PollForm survey={survey} refetch={refetch} />
 
-          <CommentSection survey={survey} />
+          <CommentSection survey={survey} refetch={refetch} />
         </div>
       )}
     </div>
