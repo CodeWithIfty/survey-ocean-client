@@ -189,6 +189,7 @@ const RegisterForm = ({
             onFocus={handleEmailClick}
             onBlur={handleUserNameBlur}
             autoComplete="on"
+            required
           />
         </label>
 

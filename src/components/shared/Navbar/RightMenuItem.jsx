@@ -81,9 +81,12 @@ const RightMenuItem = () => {
               </div>
             </div>
           </div>
-          <button className="px-4 py-2 lg:ml-12 text-white  bg-primary uppercase font-semibold rounded">
+          <Link
+            to={"/dashboard/become-pro"}
+            className="px-4 py-2 lg:ml-12 text-white  bg-primary uppercase font-semibold rounded"
+          >
             Become Pro
-          </button>
+          </Link>
         </div>
       ) : (
         <>

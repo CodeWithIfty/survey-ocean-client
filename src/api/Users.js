@@ -13,3 +13,14 @@ export const deleteUser = async (id) => {
   const { data } = await axiosSecure.delete(`/delete-user/${id}`);
   return data;
 };
+export const postPaymentInfo = async (paymentInfo) => {
+  const data = await axiosSecure.post(
+    `/post-user-payment-details`,
+    paymentInfo
+  );
+  return data;
+};
+export const getPaymentInfo = async () => {
+  const { data } = await axiosSecure.get(`/payments`);
+  return data;
+};

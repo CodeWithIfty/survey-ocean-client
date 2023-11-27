@@ -19,6 +19,15 @@ const UserMenu = () => {
       <ProfileBtn />
 
       <SignOutBtn />
+
+      <li className="">
+        <Link
+          to={"/dashboard/become-pro"}
+          className="px-4 py-2 bg-primary text-white text-center rounded-lg "
+        >
+          <span>Become Pro</span>
+        </Link>
+      </li>
     </ul>
   );
 };

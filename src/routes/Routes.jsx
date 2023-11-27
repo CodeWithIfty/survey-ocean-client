@@ -16,6 +16,8 @@ import Profile from "../pages/Profile";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import AdminSurveyManage from "../pages/Dashboard/AdminSurveyManage/AdminSurveyManage";
 import UpdateSurvey from "../pages/Dashboard/ManageSurveys/UpdateSurvey";
+import BecomeProPage from "../pages/Dashboard/BecomePro/BecomeProPage";
+import CheckOut from "../pages/Dashboard/BecomePro/CheckOut";
 
 export const router = createBrowserRouter([
   {
@@ -105,6 +107,18 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdminSurveyManage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "become-pro",
+        element: <BecomeProPage />,
+      },
+      {
+        path: "checkout",
+        element: (
+          <PrivateRoute>
+            <CheckOut />
           </PrivateRoute>
         ),
       },
