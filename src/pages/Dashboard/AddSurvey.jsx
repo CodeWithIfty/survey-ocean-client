@@ -155,6 +155,7 @@ const AddSurvey = () => {
                 onChange={handleInputChange}
                 required
               >
+                <option value="">Select Category</option>
                 <option value="Technology">Technology</option>
                 <option value="Travel and Tourism">Travel and Tourism</option>
                 <option value="Entertainment Choices">

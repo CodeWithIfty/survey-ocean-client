@@ -4,6 +4,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { CiDollar } from "react-icons/ci";
 import SignOutBtn from "./SignOutBtn";
 import ProfileBtn from "../ProfileBtn";
+import { RiSurveyLine } from "react-icons/ri";
 
 const AdminMenu = () => {
   return (
@@ -33,7 +34,7 @@ const AdminMenu = () => {
           to={"/dashboard/admin-manage-surveys"}
           className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
         >
-          <FaUsers className="text-xl" />
+          <RiSurveyLine className="text-xl" />
           <span className="ms-3">Manage Survey</span>
         </Link>
       </li>

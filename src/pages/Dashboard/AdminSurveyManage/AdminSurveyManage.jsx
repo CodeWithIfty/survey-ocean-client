@@ -17,6 +17,7 @@ const AdminSurveyManage = () => {
     if (publicationStatus[id]) {
       const publishedStatus = publicationStatus[id] === "true" ? true : false;
       if (publishedStatus) {
+        const toastId = toast.loading("Loading...");
         const action = {
           surveyId: id,
           isPublished: publishedStatus,
@@ -24,23 +25,30 @@ const AdminSurveyManage = () => {
         const data = await publishUnPublish(action);
         console.log(data);
         refetch();
+        toast.success("Status Updated", { id: toastId });
       } else if (!publishedStatus) {
-        const action = {
-          surveyId: id,
-          isPublished: publishedStatus,
-        };
-        await publishUnPublish(action);
+        const toastId = toast.loading("Loading...");
+        if (reportValues[id]) {
+          const action = {
+            surveyId: id,
+            isPublished: publishedStatus,
+          };
+          await publishUnPublish(action);
 
-        const reportData = {
-          userId,
-          surveyId: id,
-          report_message: reportValues[id],
-        };
-        const data = await postAdminReport(reportData);
-        console.log(data);
-        toast.success("Unpublished Successful...");
-        setShowReportInput(false);
-        refetch();
+          const reportData = {
+            userId,
+            surveyId: id,
+            report_message: reportValues[id],
+          };
+          const data = await postAdminReport(reportData);
+          console.log(data);
+          setShowReportInput(false);
+          setReportValues("");
+          refetch();
+          toast.success("Status Updated", { id: toastId });
+        } else {
+          toast.error("Write report please", { id: toastId });
+        }
       }
     }
   };
@@ -119,6 +127,7 @@ const AdminSurveyManage = () => {
                     <select
                       name=""
                       id=""
+                      className="px-2 py-1 bg-white border font-semibold "
                       value={publicationStatus[survey._id] || ""}
                       onChange={(e) =>
                         handleStatusChange(survey._id, e.target.value)
@@ -137,7 +146,6 @@ const AdminSurveyManage = () => {
                           onChange={(e) =>
                             handleReportInputChange(survey._id, e.target.value)
                           }
-                          // Add necessary attributes
                         />
                       )}
                   </td>
