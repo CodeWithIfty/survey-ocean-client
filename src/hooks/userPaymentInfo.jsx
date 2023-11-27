@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getPaymentInfo } from "../api/Users";
 
-const useRole = () => {
+const usePaymentInfo = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["payment_info"],
     queryFn: () => getPaymentInfo(),
@@ -10,4 +10,4 @@ const useRole = () => {
   return { data, isLoading };
 };
 
-export default useRole;
+export default usePaymentInfo;

@@ -5,6 +5,7 @@ import { CiDollar } from "react-icons/ci";
 import SignOutBtn from "./SignOutBtn";
 import ProfileBtn from "../ProfileBtn";
 import { RiSurveyLine } from "react-icons/ri";
+import { MdOutlinePayment } from "react-icons/md";
 
 const AdminMenu = () => {
   return (
@@ -38,6 +39,7 @@ const AdminMenu = () => {
           <span className="ms-3">Manage Survey</span>
         </Link>
       </li>
+
       <li>
         <Link
           to={"/dashboard/surveys"}
@@ -48,14 +50,16 @@ const AdminMenu = () => {
         </Link>
       </li>
 
-      <ProfileBtn />
       <li>
-        <button className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <IoSettingsOutline className="text-xl" />
-
-          <span className="flex-1 ms-3 whitespace-nowrap">Settings</span>
-        </button>
+        <Link
+          to={"/dashboard/payment-details"}
+          className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+        >
+          <MdOutlinePayment className="text-xl" />
+          <span className="ms-3">Payments</span>
+        </Link>
       </li>
+      <ProfileBtn />
 
       <SignOutBtn />
     </ul>

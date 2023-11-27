@@ -18,6 +18,7 @@ import AdminSurveyManage from "../pages/Dashboard/AdminSurveyManage/AdminSurveyM
 import UpdateSurvey from "../pages/Dashboard/ManageSurveys/UpdateSurvey";
 import BecomeProPage from "../pages/Dashboard/BecomePro/BecomeProPage";
 import CheckOut from "../pages/Dashboard/BecomePro/CheckOut";
+import PaymentDetails from "../pages/Dashboard/PaymentDetails/PaymentDetails";
 
 export const router = createBrowserRouter([
   {
@@ -119,6 +120,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <CheckOut />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payment-details",
+        element: (
+          <PrivateRoute>
+            <PaymentDetails />
           </PrivateRoute>
         ),
       },

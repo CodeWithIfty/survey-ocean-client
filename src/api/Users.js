@@ -20,6 +20,7 @@ export const postPaymentInfo = async (paymentInfo) => {
   );
   return data;
 };
+
 export const getPaymentInfo = async () => {
   const { data } = await axiosSecure.get(`/payments`);
   return data;
