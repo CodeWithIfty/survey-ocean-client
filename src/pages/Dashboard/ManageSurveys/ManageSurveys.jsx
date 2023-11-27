@@ -3,6 +3,10 @@ import { getUsersSurvey } from "../../../api/survey";
 import Heading from "../../../components/Surveys/Heading";
 import useUserId from "../../../hooks/useUserId";
 import ReportViewModal from "./ReportViewModal";
+import { Link } from "react-router-dom";
+import ResponseViewModal from "./ResponseViewModal";
+import ResultViewModal from "./ResultViewModal";
+import UserReportViewModal from "./UserReportViewModal";
 
 const ManageSurveys = () => {
   const userId = useUserId();
@@ -17,7 +21,7 @@ const ManageSurveys = () => {
     <div>
       <Heading title={"Surveyor | Manage Surveys"} />
 
-      <div className=" p-5">
+      <div className=" p-5 overflow-auto">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -34,9 +38,17 @@ const ManageSurveys = () => {
                 Status
               </th>
               <th scope="col" className="px-6 py-3">
-                Action
+                Edit Survey
               </th>
-              <th scope="col" className="px-6 py-3"></th>
+              <th scope="col" className="px-6 py-3">
+                View Response
+              </th>
+              <th scope="col" className="px-6 py-3">
+                View Result
+              </th>
+              <th scope="col" className="px-6 py-3">
+                View Report
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -68,9 +80,23 @@ const ManageSurveys = () => {
                 </td>
 
                 <td className="px-6 py-4">
-                  <button className="font-medium bg-secondary px-2 py-1 rounded-lg text-gray-600 ml-4">
-                    update
-                  </button>
+                  <Link
+                    to={`/dashboard/update-survey/${survey._id}`}
+                    className="font-medium bg-secondary px-2 py-1 rounded-lg text-gray-600 ml-4"
+                  >
+                    Edit
+                  </Link>
+                </td>
+
+                <td className="px-6 py-4 ">
+                  <ResponseViewModal Response={survey?.survey_response} />
+                </td>
+
+                <td className="px-6 py-4 ">
+                  <ResultViewModal adminReports={survey?.adminReports} />
+                </td>
+                <td className="px-6 py-4 ">
+                  <UserReportViewModal userReport={survey?.reports} />
                 </td>
               </tr>
             ))}

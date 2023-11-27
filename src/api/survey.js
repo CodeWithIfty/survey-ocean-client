@@ -64,3 +64,12 @@ export const publishUnPublish = async (action) => {
   const data = await axiosSecure.put(`/survey/publish`, action);
   return data;
 };
+
+export const updateSurvey = async (surveyId, updateSurvey) => {
+  console.log(updateSurvey);
+  const data = await axiosSecure.put(
+    `/update-survey/${surveyId}`,
+    updateSurvey
+  );
+  return data;
+};
