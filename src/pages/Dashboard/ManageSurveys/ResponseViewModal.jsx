@@ -12,21 +12,20 @@ export default function ResponseViewModal({ Response }) {
     setIsOpen(true);
   }
 
-  
   return (
     <>
       <div className="">
         <button
           type="button"
           onClick={openModal}
-          className="rounded-md bg-primary p-1 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+          className=" px-3 py-1 bg-primary  rounded text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
         >
           Response
         </button>
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-10 " onClose={closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"

@@ -7,8 +7,8 @@ const PaymentDetails = () => {
   return (
     <div>
       <Heading title={"Payment Details"} />
-      <div className="relative h-screen overflow-auto  border sm:rounded-lg p-5">
-        <table className="w-full text-sm text-left rtl:text-right  text-gray-500 dark:text-gray-400">
+      <div className="overflow-x-auto  border sm:rounded-lg p-5">
+        <table className="w-full text-sm text-left rtl:text-right p-5  text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="p-4">

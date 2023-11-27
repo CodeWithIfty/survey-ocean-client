@@ -15,7 +15,7 @@ const RightMenuItem = () => {
               <button
                 onClick={() => setDropDownOpen(!dropDownOpen)}
                 type="button"
-                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 hover:ring-4"
+                className="lg:flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 hover:ring-4 hidden"
                 id="user-menu-button"
                 aria-expanded="false"
                 data-dropdown-toggle="user-dropdown"
@@ -98,7 +98,6 @@ const RightMenuItem = () => {
           </Link>
         </>
       )}
-      {/*  */}
     </>
   );
 };

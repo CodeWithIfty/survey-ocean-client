@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import SignOutBtn from "../Sidebar/SignOutBtn";
 
 const navItems = [
   {
@@ -33,6 +34,9 @@ const MenuItems = () => {
           </NavLink>
         </li>
       ))}
+      <li className="lg:hidden">
+        <SignOutBtn />
+      </li>
     </ul>
   );
 };

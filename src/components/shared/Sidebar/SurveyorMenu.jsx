@@ -1,9 +1,10 @@
 import { MdAssignmentAdd } from "react-icons/md";
 import { FcSurvey } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { FaChartPie, FaUserTie } from "react-icons/fa";
+import { FaChartPie } from "react-icons/fa";
 import { CiDollar } from "react-icons/ci";
 import SignOutBtn from "./SignOutBtn";
+import ProfileBtn from "../ProfileBtn";
 
 const SurveyorMenu = () => {
   return (
@@ -48,12 +49,7 @@ const SurveyorMenu = () => {
         </Link>
       </li>
 
-      <li>
-        <button className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-          <FaUserTie className="text-xl" />
-          <span className="flex-1 ms-3 whitespace-nowrap">Profile</span>
-        </button>
-      </li>
+      <ProfileBtn />
 
       <SignOutBtn />
     </ul>

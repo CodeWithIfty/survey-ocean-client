@@ -89,7 +89,7 @@ const UpdateSurveyForm = ({ survey, isLoading }) => {
                 name="title"
                 value={updatedSurvey?.title}
                 onChange={(e) => handleInputChange(e)}
-                className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                 type="text"
                 required
               />
@@ -106,7 +106,7 @@ const UpdateSurveyForm = ({ survey, isLoading }) => {
                 name="description"
                 value={updatedSurvey?.description}
                 onChange={(e) => handleInputChange(e)}
-                className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                 required
               />
             </label>
@@ -120,7 +120,7 @@ const UpdateSurveyForm = ({ survey, isLoading }) => {
               <select
                 id="category"
                 name="category"
-                className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                 value={updatedSurvey?.category}
                 onChange={(e) => handleInputChange(e)}
                 required
@@ -156,7 +156,7 @@ const UpdateSurveyForm = ({ survey, isLoading }) => {
               <input
                 id="duration"
                 name="duration"
-                className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                 type="number"
                 value={updatedSurvey?.duration}
                 onChange={(e) => handleInputChange(e)}
@@ -164,6 +164,21 @@ const UpdateSurveyForm = ({ survey, isLoading }) => {
               />
             </label>
 
+            <label
+              htmlFor="deadline"
+              className="ml-1 font-semibold text-gray-600 flex flex-col mt-5"
+            >
+              Deadline :
+              <input
+                id="deadline"
+                name="deadline"
+                className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
+                type="date"
+                value={updatedSurvey?.deadline}
+                onChange={(e) => handleInputChange(e)}
+                required
+              />
+            </label>
             {/* Polls */}
             <div className="">
               <label
@@ -174,7 +189,7 @@ const UpdateSurveyForm = ({ survey, isLoading }) => {
                 <input
                   id="pollQuestion"
                   name="pollQuestion"
-                  className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                  className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                   type="text"
                   value={updatedSurvey?.pollQuestion}
                   onChange={(e) => handleInputChange(e)}
@@ -189,7 +204,7 @@ const UpdateSurveyForm = ({ survey, isLoading }) => {
                         type="text"
                         value={option}
                         onChange={(e) => handlePollOptionChange(e, index)}
-                        className="border bg-white px-3 py-2 rounded-md ml-4 w-3/12 mt-2 text-gray-600 font-semibold"
+                        className="border bg-white px-3 py-2 rounded-md ml-4 lg:w-3/12 mt-2 text-gray-600 font-semibold"
                       />
                     </div>
                   ))}
@@ -217,7 +232,7 @@ const UpdateSurveyForm = ({ survey, isLoading }) => {
                     <input
                       id={`question-${questionIndex}`}
                       name={`question-${questionIndex}`}
-                      className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                      className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                       type="text"
                       value={question.text}
                       onChange={(e) =>
@@ -238,7 +253,7 @@ const UpdateSurveyForm = ({ survey, isLoading }) => {
                               optionIndex
                             )
                           }
-                          className="border bg-white px-3 py-2 rounded-md ml-4 w-3/12 mt-2 text-gray-600 font-semibold"
+                          className="border bg-white px-3 py-2 rounded-md ml-4 lg:w-3/12 mt-2 text-gray-600 font-semibold"
                         />
                       </div>
                     ))}

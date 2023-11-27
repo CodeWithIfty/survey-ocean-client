@@ -5,7 +5,7 @@ import useUserId from "../../../hooks/useUserId";
 import ReportViewModal from "./ReportViewModal";
 import { Link } from "react-router-dom";
 import ResponseViewModal from "./ResponseViewModal";
-import ResultViewModal from "./ResultViewModal";
+
 import UserReportViewModal from "./UserReportViewModal";
 
 const ManageSurveys = () => {
@@ -93,7 +93,12 @@ const ManageSurveys = () => {
                 </td>
 
                 <td className="px-6 py-4 ">
-                  <ResultViewModal adminReports={survey?.adminReports} />
+                  <Link
+                    to={`/dashboard/survey-details/${survey?._id}`}
+                    className="px-3 py-2 bg-primary text-white rounded"
+                  >
+                    Result
+                  </Link>
                 </td>
                 <td className="px-6 py-4 ">
                   <UserReportViewModal userReport={survey?.reports} />

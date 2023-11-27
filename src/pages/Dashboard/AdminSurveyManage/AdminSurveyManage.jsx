@@ -10,6 +10,7 @@ const AdminSurveyManage = () => {
   const [showReportInput, setShowReportInput] = useState(false);
   const [reportValues, setReportValues] = useState({});
   const { surveys, refetch } = useSurveys();
+  console.log(surveys);
   const userId = useUserId();
 
   const handleUpdateAction = async (id) => {
@@ -76,7 +77,7 @@ const AdminSurveyManage = () => {
   return (
     <div>
       <Heading title={"Manage Surveys"} />
-      <div className="">
+      <div className="p-5">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

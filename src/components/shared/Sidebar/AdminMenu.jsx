@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { FaChartPie, FaUsers } from "react-icons/fa";
-import { IoSettingsOutline } from "react-icons/io5";
 import { CiDollar } from "react-icons/ci";
 import SignOutBtn from "./SignOutBtn";
 import ProfileBtn from "../ProfileBtn";

@@ -7,10 +7,7 @@ import UpdateSurveyForm from "./UpdateSurveyForm";
 const UpdateSurvey = () => {
   const { id } = useParams();
   console.log(id);
-  const {
-    data: survey,
-    isLoading,
-  } = useQuery({
+  const { data: survey, isLoading } = useQuery({
     queryKey: ["update_survey", id],
     queryFn: () => getSurveyDetails(id),
   });

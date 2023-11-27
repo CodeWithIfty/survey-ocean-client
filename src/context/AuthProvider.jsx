@@ -22,7 +22,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [isSideBarOpen, setIsSidebarOpen] = useState(true);
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -66,6 +66,8 @@ const AuthProvider = ({ children }) => {
     SignInWithGoogle,
     updateUserProfile,
     auth,
+    setIsSidebarOpen,
+    isSideBarOpen,
   };
   return (
     <authContext.Provider value={authInfo}>{children}</authContext.Provider>

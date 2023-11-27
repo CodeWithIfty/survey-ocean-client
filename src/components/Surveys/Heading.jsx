@@ -1,11 +1,16 @@
-
 import { Link } from "react-router-dom";
+import { CiMenuFries } from "react-icons/ci";
+import useAuth from "../../hooks/useAuth";
 
 const Heading = ({ title }) => {
+  const { setIsSidebarOpen, isSideBarOpen } = useAuth();
   return (
     <div className="px-5 border-b   py-5 flex items-center justify-between">
       <div className="">
-        <h1 className="font-bold">{title}</h1>
+        <button onClick={() => setIsSidebarOpen(!isSideBarOpen)} className="lg:hidden">
+          <CiMenuFries />
+        </button>
+        <h1 className="font-bold lg:block hidden">{title}</h1>
       </div>
 
       <div className="">

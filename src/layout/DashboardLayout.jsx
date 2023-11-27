@@ -4,10 +4,10 @@ import Sidebar from "../components/shared/Sidebar/Sidebar";
 const DashboardLayout = () => {
   return (
     <main className="container mx-auto grid grid-cols-6 ">
-      <div className="col-span-1">
+      <div className="lg:col-span-1">
         <Sidebar />
       </div>
-      <div className="col-span-5  ">
+      <div className="lg:col-span-5 col-span-6 ">
         <Outlet />
       </div>
     </main>

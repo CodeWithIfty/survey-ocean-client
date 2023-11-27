@@ -117,7 +117,7 @@ const AddSurvey = () => {
               <input
                 id="title"
                 name="title"
-                className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                 type="text"
                 value={formData.title}
                 onChange={handleInputChange}
@@ -134,7 +134,7 @@ const AddSurvey = () => {
               <textarea
                 id="description"
                 name="description"
-                className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                 value={formData.description}
                 onChange={handleInputChange}
                 required
@@ -150,7 +150,7 @@ const AddSurvey = () => {
               <select
                 id="category"
                 name="category"
-                className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                 value={formData.category}
                 onChange={handleInputChange}
                 required
@@ -186,9 +186,26 @@ const AddSurvey = () => {
               <input
                 id="duration"
                 name="duration"
-                className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                 type="number"
                 value={formData.duration}
+                onChange={handleInputChange}
+                required
+              />
+            </label>
+
+            {/* Deadline */}
+            <label
+              htmlFor="deadline"
+              className="ml-1 font-semibold text-gray-600 flex flex-col mt-5"
+            >
+              Deadline :
+              <input
+                id="deadline"
+                name="deadline"
+                className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
+                type="date"
+                value={formData.deadline}
                 onChange={handleInputChange}
                 required
               />
@@ -204,7 +221,7 @@ const AddSurvey = () => {
                 <input
                   id="pollQuestion"
                   name="pollQuestion"
-                  className="border bg-white px-3 py-2 rounded-md w-6/12 mt-2 text-gray-600 font-semibold"
+                  className="border bg-white px-3 py-2 rounded-md lg:w-6/12 mt-2 text-gray-600 font-semibold"
                   type="text"
                   value={formData.pollQuestion}
                   onChange={(e) => handlePollQuestionChange(e.target.value)}
@@ -217,7 +234,7 @@ const AddSurvey = () => {
                   <div key={index}>
                     <input
                       type="text"
-                      className="border bg-white px-3 py-2 rounded-md ml-4 w-3/12 mt-2 text-gray-600 font-semibold"
+                      className="border bg-white px-3 py-2 rounded-md ml-4 lg:w-3/12 mt-2 text-gray-600 font-semibold"
                       placeholder={`Poll Option ${index + 1}`}
                       value={option}
                       onChange={(e) =>
@@ -249,7 +266,7 @@ const AddSurvey = () => {
                     Question {index + 1}:
                     <input
                       id={`question-${index}`}
-                      className="border bg-white px-3 py-2 rounded-md w-6/12
+                      className="border bg-white px-3 py-2 rounded-md lg:w-6/12
                     mt-2 text-gray-600 font-semibold"
                       type="text"
                       value={question.text}
