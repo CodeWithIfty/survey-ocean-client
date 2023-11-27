@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import useRole from "../../../hooks/useRole";
 import AdminMenu from "./AdminMenu";
@@ -22,13 +21,9 @@ const Sidebar = () => {
         aria-labelledby="drawer-navigation-label"
       >
         {/* Logo */}
-        <Link
-          to={"/"}
-          id="drawer-navigation-label"
-          className="text-base font-semibold text-gray-500 uppercase dark:text-gray-400"
-        >
-          <img src="/assets/logo.png" alt="" className="h-12" />
-        </Link>
+        <h1 className="text-base font-semibold  ml-5 text-gray-500 uppercase dark:text-gray-400">
+          Menu bar
+        </h1>
 
         {/* <button
           type="button"

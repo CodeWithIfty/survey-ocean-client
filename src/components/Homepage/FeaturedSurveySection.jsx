@@ -9,13 +9,16 @@ import {
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import "pure-react-carousel/dist/react-carousel.es.css";
 import { useEffect, useState } from "react";
-import useSurveys from "../../hooks/useSurveys";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import useFeaturedSurveys from "../../hooks/useFeaturedSurveys";
 
 const FeaturedSurveySection = () => {
   const [slidesToShow, setSlidesToShow] = useState(3);
-  const { surveys } = useSurveys();
+
+  const { surveys } = useFeaturedSurveys();
   //   Changing visible slide depending window size
+  console.log(surveys);
   useEffect(() => {
     const handleResize = () => {
       const isSmallScreen = window.innerWidth <= 768;

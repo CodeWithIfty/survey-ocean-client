@@ -8,10 +8,7 @@ const SurveyFilterForm = ({ setSurveys, setIsLoading }) => {
   const [sortByVote, setSortByVote] = useState("");
   const [searchText, setSearchText] = useState("");
 
-  const {
-    data: surveys,
-    isLoading,
-  } = useQuery({
+  const { data: surveys, isLoading } = useQuery({
     queryKey: ["filtered-surveys", category, sortLike, sortByVote, searchText],
     queryFn: () =>
       getFilteredSurveys(category, sortLike, sortByVote, searchText),

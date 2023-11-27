@@ -42,6 +42,10 @@ export const getUsersSurvey = async (userId) => {
   const { data } = await axiosSecure(`/user-surveys/${userId}`);
   return data;
 };
+export const getFeaturedSurvey = async () => {
+  const data = await axiosSecure(`/get-featured-surveys`);
+  return data.data.surveys;
+};
 
 export const getFilteredSurveys = async (
   category,
@@ -66,7 +70,6 @@ export const publishUnPublish = async (action) => {
 };
 
 export const updateSurvey = async (surveyId, updateSurvey) => {
-  console.log(updateSurvey);
   const data = await axiosSecure.put(
     `/update-survey/${surveyId}`,
     updateSurvey
