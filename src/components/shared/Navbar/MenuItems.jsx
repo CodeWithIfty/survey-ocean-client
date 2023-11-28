@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import SignOutBtn from "../Sidebar/SignOutBtn";
+import useAuth from "../../../hooks/useAuth";
 
 const navItems = [
   {
@@ -21,6 +22,7 @@ const navItems = [
 ];
 // eslint-disable-next-line react/prop-types
 const MenuItems = () => {
+  const { user } = useAuth();
   return (
     <ul className="flex  lg:flex-row flex-col">
       {navItems?.map((item, index) => (
@@ -34,9 +36,11 @@ const MenuItems = () => {
           </NavLink>
         </li>
       ))}
-      <li className="lg:hidden">
-        <SignOutBtn />
-      </li>
+      {user && (
+        <li className="lg:hidden">
+          <SignOutBtn />
+        </li>
+      )}
     </ul>
   );
 };

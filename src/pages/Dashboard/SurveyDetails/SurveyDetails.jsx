@@ -15,7 +15,7 @@ const SurveyDetails = () => {
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["surveys"],
+    queryKey: ["surveys-details"],
     queryFn: () => getSurveyDetails(id),
   });
 

@@ -19,6 +19,11 @@ import UpdateSurvey from "../pages/Dashboard/ManageSurveys/UpdateSurvey";
 import BecomeProPage from "../pages/Dashboard/BecomePro/BecomeProPage";
 import CheckOut from "../pages/Dashboard/BecomePro/CheckOut";
 import PaymentDetails from "../pages/Dashboard/PaymentDetails/PaymentDetails";
+import ContactUs from "../pages/ContactUs";
+import HowItsWorks from "../pages/HowItsWorks";
+import SurveyorRoute from "./SurveyorRoute";
+import AdminRoute from "./AdminRoute";
+import DashboardRoute from "./DashboardRoute";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +42,14 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      {
+        path: "/contact-us",
+        element: <ContactUs />,
+      },
+      {
+        path: "/about-us",
+        element: <HowItsWorks />,
+      },
     ],
   },
   {
@@ -47,7 +60,9 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: (
           <PrivateRoute>
-            <Dashboard />
+            <DashboardRoute>
+              <Dashboard />
+            </DashboardRoute>
           </PrivateRoute>
         ),
       },
@@ -59,7 +74,9 @@ export const router = createBrowserRouter([
         path: "add-survey",
         element: (
           <PrivateRoute>
-            <AddSurvey />
+            <SurveyorRoute>
+              <AddSurvey />
+            </SurveyorRoute>
           </PrivateRoute>
         ),
       },
@@ -67,7 +84,9 @@ export const router = createBrowserRouter([
         path: "manage-surveys",
         element: (
           <PrivateRoute>
-            <ManageSurveys />
+            <SurveyorRoute>
+              <ManageSurveys />
+            </SurveyorRoute>
           </PrivateRoute>
         ),
       },
@@ -75,7 +94,9 @@ export const router = createBrowserRouter([
         path: "update-survey/:id",
         element: (
           <PrivateRoute>
-            <UpdateSurvey />
+            <SurveyorRoute>
+              <UpdateSurvey />
+            </SurveyorRoute>
           </PrivateRoute>
         ),
       },
@@ -85,7 +106,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "survey/:id",
-        element: <StartSurvey />,
+        element: (
+          <PrivateRoute>
+            <StartSurvey />
+          </PrivateRoute>
+        ),
       },
       {
         path: "profile",
@@ -99,7 +124,9 @@ export const router = createBrowserRouter([
         path: "manage-users",
         element: (
           <PrivateRoute>
-            <ManageUsers />
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
@@ -107,7 +134,9 @@ export const router = createBrowserRouter([
         path: "admin-manage-surveys",
         element: (
           <PrivateRoute>
-            <AdminSurveyManage />
+            <AdminRoute>
+              <AdminSurveyManage />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },
@@ -127,7 +156,9 @@ export const router = createBrowserRouter([
         path: "payment-details",
         element: (
           <PrivateRoute>
-            <PaymentDetails />
+            <AdminRoute>
+              <PaymentDetails />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },

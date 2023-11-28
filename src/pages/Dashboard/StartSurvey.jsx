@@ -15,7 +15,7 @@ const StartSurvey = () => {
   const navigate = useNavigate();
 
   const { data: survey } = useQuery({
-    queryKey: ["surveys"],
+    queryKey: ["start-surveys"],
     queryFn: () => getSurveyDetails(id),
   });
 
@@ -60,7 +60,7 @@ const StartSurvey = () => {
     try {
       await postSurveyResponse(payload);
       toast.success("Successfully Submitted!", { id: toastId });
-      navigate("/dashboard/surveys");
+      navigate(`/dashboard/survey-details/${id}`);
     } catch (error) {
       if (error.message === "Request failed with status code 400") {
         toast.error("Already Submitted!", { id: toastId });

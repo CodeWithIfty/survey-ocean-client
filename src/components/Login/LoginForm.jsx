@@ -52,13 +52,13 @@ const LoginForm = ({
     try {
       // Creating User
       const result = await SignInWithGoogle();
-      console.log(result);
-
-      // save user to db
-      await saveUser(result?.user);
 
       // Get token
       await createToken(result?.user);
+      console.log(result);
+      // save user to db
+      await saveUser(result?.user);
+
       // console.log(data);
 
       toast.success("Successfully Registered !", { id: toastId });

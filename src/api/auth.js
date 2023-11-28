@@ -1,7 +1,5 @@
 import axiosSecure from "./index.js";
 
-
-
 export const saveUser = async (user) => {
   const currentUser = {
     user_email: user?.email,
@@ -20,6 +18,7 @@ export const createToken = async (user) => {
   const { data } = await axiosSecure.post(`/jwt`, currentUser);
   return data;
 };
+
 export const removeToken = async (user) => {
   try {
     const currentUser = { email: user?.email };
@@ -32,7 +31,7 @@ export const removeToken = async (user) => {
 
 export const getRole = async (email) => {
   const { data } = await axiosSecure(`/user/${email}`);
-  return data.user_role;
+  return data?.user_role;
 };
 export const getUserInfo = async (email) => {
   const { data } = await axiosSecure(`/user/${email}`);
@@ -42,4 +41,3 @@ export const getUser = async (email) => {
   const { data } = await axiosSecure(`/user/${email}`);
   return data._id;
 };
-

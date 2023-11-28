@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
+import useRole from "../../../hooks/useRole";
 
 const RightMenuItem = () => {
   const { user, SignOutUser } = useAuth();
   const [dropDownOpen, setDropDownOpen] = useState(false);
+  const role = useRole();
 
   return (
     <>
@@ -81,12 +83,21 @@ const RightMenuItem = () => {
               </div>
             </div>
           </div>
-          <Link
-            to={"/dashboard/become-pro"}
-            className="px-4 py-2 lg:ml-12 text-white  bg-primary uppercase font-semibold rounded"
-          >
-            Become Pro
-          </Link>
+          {role === "admin" || role === "surveyor" ? (
+            <Link
+              to={"/dashboard"}
+              className="px-4 py-2 lg:ml-12 text-white  bg-primary uppercase font-semibold rounded"
+            >
+              Dashboard
+            </Link>
+          ) : (
+            <Link
+              to={"/dashboard/become-pro"}
+              className="px-4 py-2 lg:ml-12 text-white  bg-primary uppercase font-semibold rounded"
+            >
+              Become Pro
+            </Link>
+          )}
         </div>
       ) : (
         <>

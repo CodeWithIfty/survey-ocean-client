@@ -3,18 +3,16 @@ import useRole from "../hooks/useRole";
 import useAuth from "../hooks/useAuth";
 import Loader from "../components/shared/Loader";
 
-const SurveyorRoute = ({ children }) => {
+const AdminRoute = ({ children }) => {
   const { loading } = useAuth();
   const role = useRole();
 
   const location = useLocation();
   const navigate = useNavigate();
   if (loading) {
-    return (
-      <Loader/>
-    );
+    return <Loader />;
   }
-  if (role === "surveyor") {
+  if (role === "admin") {
     return children;
   }
 
@@ -23,4 +21,4 @@ const SurveyorRoute = ({ children }) => {
   });
 };
 
-export default SurveyorRoute;
+export default AdminRoute;

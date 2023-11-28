@@ -10,6 +10,7 @@ import UserMenu from "./UserMenu";
 const Sidebar = () => {
   const { user, loading, setIsSidebarOpen, isSideBarOpen } = useAuth();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -65,7 +66,7 @@ const Sidebar = () => {
         <span className="sr-only">Close menu</span>
       </button>
 
-      {loading ? (
+      {!role && loading ? (
         <>Loading...</>
       ) : (
         <div className="py-4 overflow-y-auto">

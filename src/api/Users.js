@@ -24,3 +24,11 @@ export const getPaymentInfo = async () => {
   const { data } = await axiosSecure.get(`/payments`);
   return data;
 };
+export const getSurveyorAnalytics = async (authorId) => {
+  const { data } = await axiosSecure.get(`/surveyor-analytics/${authorId}`);
+  return data;
+};
+export const getAdminAnalytics = async () => {
+  const { data } = await axiosSecure.get(`/admin-analytics`);
+  return data;
+};

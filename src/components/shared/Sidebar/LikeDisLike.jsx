@@ -53,9 +53,9 @@ const LikeDisLike = ({ survey, refetch }) => {
           const data = { userId, surveyId, action };
 
           const result = await doLike(data);
-          refetch();
           toast.success("Disliked", { id: toastId });
           console.log(result);
+          refetch();
         } catch (error) {
           if (error.message === "Request failed with status code 400") {
             toast.error("Already Performed!", { id: toastId });

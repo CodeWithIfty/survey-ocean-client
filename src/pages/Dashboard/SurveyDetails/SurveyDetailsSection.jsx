@@ -113,7 +113,10 @@ const SurveyDetailsSection = ({ survey, refetch, isLoading }) => {
           {(userAttended || survey.author === userId || role === "admin") &&
             !isDeadlineExpired &&
             questionChartData?.map((chart, index) => (
-              <div key={index} className="border-t pt-5 mt-4">
+              <div key={index} className="mt-4 border-t pt-4">
+                <h1 className=" text-center font-bold text-xl">
+                  Total Response {survey?.survey_response?.length}
+                </h1>
                 <h2 className="font-bold">Question {index + 1} :</h2>
                 <Chart
                   key={index}
