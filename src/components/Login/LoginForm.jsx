@@ -33,12 +33,13 @@ const LoginForm = ({
       const result = await SignInUser(email, password);
 
       // get token
-      await createToken(result?.user);
-
-      toast.success("Logged in", { id: toastId });
-      navigate(
-        location?.state?.previousPath ? location?.state?.previousPath : "/"
-      );
+      const token = await createToken(result?.user);
+      if (token.success) {
+        toast.success("Logged in", { id: toastId });
+        navigate(
+          location?.state?.previousPath ? location?.state?.previousPath : "/"
+        );
+      }
     } catch (err) {
       setLoginError("Invalid login details!");
       toast.error("Invalid login details!", { id: toastId });
@@ -52,19 +53,22 @@ const LoginForm = ({
     try {
       // Creating User
       const result = await SignInWithGoogle();
+      console.log(result);
 
       // Get token
-      await createToken(result?.user);
-      console.log(result);
-      // save user to db
-      await saveUser(result?.user);
+      const token = await createToken(result?.user);
 
-      // console.log(data);
+      if (token.success) {
+        // save user to db
+        await saveUser(result?.user);
 
-      toast.success("Successfully Registered !", { id: toastId });
-      navigate(
-        location?.state?.previousPath ? location?.state?.previousPath : "/"
-      );
+        // console.log(data);
+
+        toast.success("Successfully Registered !", { id: toastId });
+        navigate(
+          location?.state?.previousPath ? location?.state?.previousPath : "/"
+        );
+      }
     } catch (err) {
       console.log("error from register ----->", err);
     }

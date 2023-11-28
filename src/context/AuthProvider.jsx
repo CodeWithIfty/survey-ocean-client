@@ -33,7 +33,8 @@ const AuthProvider = ({ children }) => {
   };
   const SignOutUser = async () => {
     await removeToken();
-    return await signOut(auth);
+    await signOut(auth);
+    console.log("logout");
   };
   const SignInWithGoogle = () => {
     return signInWithPopup(auth, googleProvider);
