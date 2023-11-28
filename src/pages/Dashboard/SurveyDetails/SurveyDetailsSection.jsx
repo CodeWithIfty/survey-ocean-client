@@ -110,7 +110,7 @@ const SurveyDetailsSection = ({ survey, refetch, isLoading }) => {
             </div>
           </div>
 
-          {(userAttended || survey.author === userId) &&
+          {(userAttended || survey.author === userId || role === "admin") &&
             !isDeadlineExpired &&
             questionChartData?.map((chart, index) => (
               <div key={index} className="border-t pt-5 mt-4">

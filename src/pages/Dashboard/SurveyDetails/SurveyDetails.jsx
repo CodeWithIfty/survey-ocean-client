@@ -27,7 +27,11 @@ const SurveyDetails = () => {
         <Loader />
       ) : (
         <div className="p-5">
-          <SurveyDetailsSection survey={survey} refetch={refetch} isLoading={isLoading}/>
+          <SurveyDetailsSection
+            survey={survey}
+            refetch={refetch}
+            isLoading={isLoading}
+          />
 
           <PollForm survey={survey} refetch={refetch} />
 

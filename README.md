@@ -1,8 +1,12 @@
-# React + Vite
+# SurveyOcean Polling and Survey Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Site Link: https://survey-ocean.web.app
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Homepage Sections**: Explore the hero section, featured surveys, latest surveys, and testimonials.
+2. **Survey Pages**: Access all surveys, filter by title or category, view details, and participate in polls.
+3. **User Interaction**: Like/dislike surveys, view results with charts, and report inappropriate content.
+4. **User Authentication**: Sign up/login with email/password or social media accounts for seamless access.
+5. **Payment Integration**: Upgrade to pro-user status with integrated payment functionality for added features.
+

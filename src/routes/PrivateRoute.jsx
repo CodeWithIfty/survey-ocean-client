@@ -15,7 +15,7 @@ const PrivateRoute = ({ children }) => {
     return children;
   }
 
-  return navigate("/register", {
+  return navigate("/login", {
     state: { previousPath: location.pathname },
   });
 };

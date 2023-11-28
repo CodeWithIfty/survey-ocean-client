@@ -122,8 +122,8 @@ const LoginForm = ({
           log in
         </button>
       </div>
-      <div className="social-buttons">
-        <div className="social" onClick={handleSignInWithGoogle}>
+      <div className="social-buttons cursor-pointer">
+        <div className="social w-full h-full " onClick={handleSignInWithGoogle}>
           <FaGoogle />
         </div>
       </div>
