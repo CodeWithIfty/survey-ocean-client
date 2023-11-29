@@ -10,7 +10,7 @@ import Loader from "../../../components/shared/Loader";
 
 const SurveyDetailsSection = ({ survey, refetch, isLoading }) => {
   const navigate = useNavigate();
-  const [userAttended, setUserAttended] = useState(false);
+  const [userAttended, setUserAttended] = useState();
   const [isDeadlineExpired, setIsDeadlineExpired] = useState(false);
   const durationInSeconds = parseInt(survey?.duration);
   const durationInMinutes = !isNaN(durationInSeconds)
@@ -20,13 +20,7 @@ const SurveyDetailsSection = ({ survey, refetch, isLoading }) => {
   const userId = useUserId();
   const role = useRole();
 
-  console.log(survey?.survey_response);
-
-  const checkDeadlineExpired = () => {
-    const currentDate = new Date();
-    const surveyDeadline = new Date(survey.deadline);
-    setIsDeadlineExpired(currentDate > surveyDeadline);
-  };
+  // console.log(survey);
 
   useEffect(() => {
     if (survey) {
@@ -39,10 +33,18 @@ const SurveyDetailsSection = ({ survey, refetch, isLoading }) => {
       } else {
         setUserAttended(false);
       }
-      checkDeadlineExpired();
     }
   }, [survey, userId]);
-  console.log(userAttended);
+
+  useEffect(() => {
+    const checkDeadlineExpired = () => {
+      const currentDate = new Date();
+      const surveyDeadline = new Date(survey?.deadline);
+      setIsDeadlineExpired(currentDate > surveyDeadline);
+    };
+    checkDeadlineExpired(); // Call checkDeadlineExpired here
+  }, [survey?.deadline]);
+  // console.log("userAttended:", userAttended);
 
   const handleStartSurvey = () => {
     if (role === "user" || role === "pro-user") {
@@ -110,8 +112,10 @@ const SurveyDetailsSection = ({ survey, refetch, isLoading }) => {
             </div>
           </div>
 
-          {(userAttended || survey.author === userId || role === "admin") &&
-            !isDeadlineExpired &&
+          {(isDeadlineExpired ||
+            userAttended ||
+            survey?.author === userId ||
+            role === "admin") &&
             questionChartData?.map((chart, index) => (
               <div key={index} className="mt-4 border-t pt-4">
                 <h1 className=" text-center font-bold text-xl">

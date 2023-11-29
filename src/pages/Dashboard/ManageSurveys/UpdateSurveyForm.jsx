@@ -62,10 +62,10 @@ const UpdateSurveyForm = ({ survey, isLoading }) => {
       const toastId = toast.loading("Loading...");
       const surveyId = survey?._id;
       const data = await updateSurvey(surveyId, updatedSurvey);
-      console.log("Updated Survey Data:", updatedSurvey);
+      // console.log("Updated Survey Data:", updatedSurvey);
       toast.success("Successfully Updated!", { id: toastId });
       navigate("/dashboard/manage-surveys");
-      console.log(data);
+      // console.log(data);
     } catch (err) {
       console.log(err);
     }
