@@ -1,7 +1,8 @@
-import { FcSurvey } from "react-icons/fc";
 import StatCard from "../../../components/shared/StatCard";
 import useAdminAnalytics from "../../../hooks/useAdminAnalytics";
-import { MdOutlineMessage } from "react-icons/md";
+import { MdPayments } from "react-icons/md";
+import { FaUsers } from "react-icons/fa";
+import { PiCurrencyDollarSimpleFill } from "react-icons/pi";
 import Chart from "react-google-charts";
 import Loader from "../../../components/shared/Loader";
 
@@ -35,17 +36,17 @@ export const AdminDashboard = () => {
             <StatCard
               title={"Total Revenue"}
               value={`$ ${data?.totalSales}`}
-              icon={<MdOutlineMessage />}
+              icon={<PiCurrencyDollarSimpleFill />}
             />
             <StatCard
               title={"Total  Sales"}
               value={data?.totalPayments}
-              icon={<FcSurvey />}
+              icon={<MdPayments />}
             />
             <StatCard
               title={"Total  Users"}
               value={data?.totalUsers}
-              icon={<FcSurvey />}
+              icon={<FaUsers />}
             />
           </div>
           <div className="">

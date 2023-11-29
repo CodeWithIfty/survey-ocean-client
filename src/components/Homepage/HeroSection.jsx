@@ -1,14 +1,18 @@
 import { FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
     <section>
       <div className="grid md:grid-cols-8 grid-cols-1  justify-center items-center md:gap-24 mx-5">
         <div className="lg:col-span-5 md:col-span-4 flex flex-col justify-start items-center order-2">
           <div className="">
-            <button className="bg-secondary px-3 py-2 font-semibold mb-3 rounded">
-              QUANTITATIVE
-            </button>
-            <h1 className="lg:text-6xl text-4xl font-semibold mb-4">
+            <Link
+              to={"/dashboard/surveys"}
+              className="bg-secondary px-3 py-2 font-semibold  rounded"
+            >
+              EXPLORE
+            </Link>
+            <h1 className="lg:text-6xl text-4xl font-semibold mb-4 mt-4">
               A powerful <br /> online survey tool.
             </h1>
             <div className="bg-white  px-2 py-1 mt-10 w-10/12 flex items-center justify-between  shadow-xl">
@@ -17,9 +21,12 @@ const HeroSection = () => {
                 placeholder="Your Email Address here"
                 className="bg-transparent w-full bg-white outline-none"
               />
-              <button className="bg-primary py-2 px-4 text-xl text-white rounded">
+              <Link
+                to={"/register"}
+                className="bg-primary py-2 px-4 text-xl text-white rounded"
+              >
                 <FaArrowRight />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

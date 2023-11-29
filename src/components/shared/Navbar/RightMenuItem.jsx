@@ -90,6 +90,13 @@ const RightMenuItem = () => {
             >
               Dashboard
             </Link>
+          ) : role === "pro-user" ? (
+            <Link
+              to={"/dashboard/surveys"}
+              className="px-4 py-2 lg:ml-12 text-white  bg-primary uppercase font-semibold rounded"
+            >
+              All Surveys
+            </Link>
           ) : (
             <Link
               to={"/dashboard/become-pro"}

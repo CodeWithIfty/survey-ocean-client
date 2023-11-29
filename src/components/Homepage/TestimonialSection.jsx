@@ -10,8 +10,8 @@ const TestimonialSection = () => {
           </h5>
           <h2 className="mb-12 mt-4 text-5xl font-bold">Our Happy Customers</h2>
 
-          <div className="grid gap-x-6 md:grid-cols-3 xl:gap-x-12">
-            <div className="mb-6 lg:mb-0">
+          <div className="grid gap-x-6 md:grid-cols-3 xl:gap-x-12 justify-center">
+            <div className="mb-6 lg:mb-0 w-96">
               <div className="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
@@ -108,7 +108,7 @@ const TestimonialSection = () => {
               </div>
             </div>
 
-            <div className="mb-6 lg:mb-0">
+            <div className="mb-6 lg:mb-0 w-96">
               <div className="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
@@ -205,7 +205,7 @@ const TestimonialSection = () => {
               </div>
             </div>
 
-            <div className="">
+            <div className="w-96">
               <div className="block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
                 <div className="relative overflow-hidden bg-cover bg-no-repeat">
                   <img
