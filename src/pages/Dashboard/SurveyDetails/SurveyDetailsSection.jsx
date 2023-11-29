@@ -101,6 +101,10 @@ const SurveyDetailsSection = ({ survey, refetch, isLoading }) => {
                 <button className="bg-gray px-4 py-2 rounded-lg text-black font-semibold mt-3">
                   Already Submitted
                 </button>
+              ) : isDeadlineExpired ? (
+                <button className="bg-gray px-4 py-2 rounded-lg text-black font-semibold mt-3">
+                  Deadline Expired
+                </button>
               ) : (
                 <button
                   onClick={handleStartSurvey}
