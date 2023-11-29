@@ -53,7 +53,7 @@ export const getFilteredSurveys = async (
   sortByVote,
   searchText
 ) => {
-  console.log(sortByVote);
+  // console.log(sortByVote);
   try {
     const { data } = await axiosSecure(
       `/get-filtered-survey?category=${category}&sortByLikeDislike=${sortLike}&sortByVote=${sortByVote}&searchTerm=${searchText}`

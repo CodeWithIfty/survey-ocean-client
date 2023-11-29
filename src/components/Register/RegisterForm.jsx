@@ -52,7 +52,7 @@ const RegisterForm = ({
 
       // Creating User
       const result = await createUser(email, password);
-      console.log(result);
+      // console.log(result);
 
       // Updating user Display name and photoURL
       await updateUserProfile(name, display_url);
@@ -82,7 +82,7 @@ const RegisterForm = ({
     try {
       // Creating User
       const result = await SignInWithGoogle();
-      console.log(result);
+      // console.log(result);
 
       // save user to db
       await saveUser(result?.user);

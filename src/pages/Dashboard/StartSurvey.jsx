@@ -14,7 +14,7 @@ const StartSurvey = () => {
   const [isExpired, setIsExpired] = useState(false);
   const navigate = useNavigate();
 
-  const { data: survey } = useQuery({
+  const { data: survey, isLoading } = useQuery({
     queryKey: ["start-surveys"],
     queryFn: () => getSurveyDetails(id),
   });
@@ -110,6 +110,7 @@ const StartSurvey = () => {
         <Timer
           durationInSeconds={parseInt(survey?.duration)}
           onTimerExpired={() => setIsExpired(true)}
+          isLoading ={isLoading}
         />
       </div>
     </div>

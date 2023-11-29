@@ -53,7 +53,7 @@ const LoginForm = ({
     try {
       // Creating User
       const result = await SignInWithGoogle();
-      console.log(result);
+      // console.log(result);
 
       // Get token
       const token = await createToken(result?.user);

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import Loader from "../../../components/shared/Loader";
 
-const Timer = ({ durationInSeconds, onTimerExpired }) => {
-  const [timeLeft, setTimeLeft] = useState(durationInSeconds);
-
+const Timer = ({ durationInSeconds, onTimerExpired, isLoading }) => {
+  const [timeLeft, setTimeLeft] = useState(parseFloat(durationInSeconds));
+  console.log(timeLeft);
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft((prevTime) => {
@@ -16,7 +17,7 @@ const Timer = ({ durationInSeconds, onTimerExpired }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [durationInSeconds, onTimerExpired]);
+  }, [durationInSeconds, onTimerExpired, timeLeft]);
 
   const secondsLeft = durationInSeconds - timeLeft;
 
@@ -24,18 +25,26 @@ const Timer = ({ durationInSeconds, onTimerExpired }) => {
 
   return (
     <div>
-      <div>
-        <p className="font-sans">Time left: {timeLeft} sec</p>
-      </div>
-      <div style={{ width: "100%", height: "10px", backgroundColor: "#ccc" }}>
-        <div
-          style={{
-            width: `${progress}%`,
-            height: "100%",
-            backgroundColor: "green",
-          }}
-        />
-      </div>
+      {!timeLeft ? (
+        <Loader />
+      ) : (
+        <div className="">
+          <div>
+            <p className="font-sans">Time left: {timeLeft} sec</p>
+          </div>
+          <div
+            style={{ width: "100%", height: "10px", backgroundColor: "#ccc" }}
+          >
+            <div
+              style={{
+                width: `${progress}%`,
+                height: "100%",
+                backgroundColor: "green",
+              }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
