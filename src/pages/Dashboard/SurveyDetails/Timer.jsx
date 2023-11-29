@@ -1,10 +1,21 @@
 import { useEffect, useState } from "react";
-import Loader from "../../../components/shared/Loader";
 
-const Timer = ({ durationInSeconds, onTimerExpired, isLoading }) => {
-  const [timeLeft, setTimeLeft] = useState(parseFloat(durationInSeconds));
-  console.log(timeLeft);
+const Timer = ({ durationInSeconds, onTimerExpired }) => {
+  const [timeLeft, setTimeLeft] = useState(null);
+
   useEffect(() => {
+    if (typeof durationInSeconds === "number" && durationInSeconds > 0) {
+      setTimeLeft(durationInSeconds);
+    } else {
+      setTimeLeft(null);
+    }
+  }, [durationInSeconds]);
+
+  useEffect(() => {
+    if (timeLeft === null) {
+      return; // Don't start the timer if timeLeft is not set
+    }
+
     const interval = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 0) {
@@ -17,17 +28,17 @@ const Timer = ({ durationInSeconds, onTimerExpired, isLoading }) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [durationInSeconds, onTimerExpired, timeLeft]);
+  }, [timeLeft, onTimerExpired]);
 
   const secondsLeft = durationInSeconds - timeLeft;
 
-  const progress = (secondsLeft / durationInSeconds) * 100;
+  const progress = durationInSeconds
+    ? (secondsLeft / durationInSeconds) * 100
+    : 0;
 
   return (
     <div>
-      {!timeLeft ? (
-        <Loader />
-      ) : (
+      {timeLeft !== null && timeLeft > 0 && (
         <div className="">
           <div>
             <p className="font-sans">Time left: {timeLeft} sec</p>
