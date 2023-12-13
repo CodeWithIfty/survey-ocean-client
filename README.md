@@ -2,10 +2,23 @@
 
 ## Live Site Link: https://survey-ocean.web.app
 
+## Overview
+
+The Survey Management System provides a platform to create surveys on various topics, manage survey responses, and generate reports based on the collected data. It allows administrators to create surveys, track responses, and view analytics.
+
 ## Features
 
-1. **Homepage Sections**: Explore the hero section, featured surveys, and testimonials.
-2. **Survey Pages**: Access all surveys, filter by title or category etc, view details, and participate in polls and survey.
-3. **User Interaction**: Like/dislike surveys, view results with charts, and report inappropriate content.
-4. **User Authentication**: Sign up/login with email/password or social media accounts for seamless access.
-5. **Payment Integration**: Upgrade to pro-user status with integrated payment functionality for added features.
+- **Survey Creation**: Create custom surveys with multiple-choice questions, open-ended questions, and polls.
+- **User Roles**: Differentiate user roles (admin, user) with varied permissions.
+- **Survey Management**: Edit, delete, and publish/unpublish surveys.
+- **Response Tracking**: Monitor user responses and view detailed analytics.
+- **Filter and Sorting**: Filter surveys by category, sort by likes, dislikes, and votes.
+- **Dashboard**: Visual representation of survey statistics and trends.
+
+## Technologies Used
+
+- **Frontend**: React.js, Tailwind, JavaScript
+- **Backend**: Node.js, Express.js, MongoDB
+- **Authentication**: JWT (JSON Web Tokens)
+- **Deployment**: Firebase, Vercel
+- **Other Tools**: Axios, Mongoose, React Router, Chart.js, 

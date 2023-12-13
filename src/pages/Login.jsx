@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   return (
-    <div className="h-[85vh] w-full bg-[#e0e0e0]">
+    <div className="h-[85vh] w-full bg-[#e0e0e0] m-auto">
       <div className="center   h-[490px] ">
         <div className="ear ear--left"></div>
         <div className="ear ear--right"></div>
